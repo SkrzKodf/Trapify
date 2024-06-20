@@ -1,0 +1,13 @@
+
+mixin doc(css, js)
+    doctype html
+    html(lang="ru")
+        head
+            meta(charset="utf-8")
+            meta(name="viewport", content="width=device-width, initial-scale=1.0")
+            title TRAPIFY
+            for file of css
+                link(rel="stylesheet" href=`/style/${file}.min.css`)
+        body
+            for file of js
+                script(async type="module", src=`/js/${file}.min.js`)
