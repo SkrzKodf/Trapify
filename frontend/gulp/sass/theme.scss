@@ -1,0 +1,38 @@
+// Базовые цвета
+:root{
+--black: #181818;
+--grey: #7E7E7E;
+--white: #FFFFFF;
+--light-grey: #D9D9D9;
+--red: #A5260A;
+--dark-grey: #2E2C2C;
+
+// Цвета для фона (из черного в серый градиент 9% и 100%)
+--color-background1: var(--black);
+--color-background2: var(--grey);
+
+// Цвета для текста в регистрации и входа
+--color-text-regis: var(--black);
+--color-text-entry: var(--black);
+--color-text-red: var(--red);
+
+// Цвет для кнопки
+--color-but-entry: var(--grey);
+
+// Цвет для блока ввода
+--color-input: var(--light-grey);
+
+// Цвет для основного текста
+--color-main-text:var(--white);
+
+// Цвет для иконок сверху, лайков, звука
+--color-icon:var(--white);
+
+// Цвет для проигрывателя
+--color-play: var(--light-grey);
+
+// Цвет для верхней и нижний панели
+--color-top-panel:var(--black);
+--color-bot-panel:var(--dark-grey);
+}
+
