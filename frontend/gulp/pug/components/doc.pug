@@ -11,3 +11,4 @@ mixin doc(css, js)
         body
             for file of js
                 script(async type="module", src=`./js/${file}.min.js`)
+            block
