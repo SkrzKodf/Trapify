@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import { Sequelize, DataTypes } from 'sequelize'
+import multer from 'multer'
+
 dotenv.config();
 
 import { fileURLToPath } from "url";
@@ -60,6 +62,18 @@ const FavoriteTracks = sequelize.define('favoritetracks', {
     },
 }, { freezeTableName: true, timestamps: false });
 
+const Music = sequelize.define('music', {
+    music_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        allowNull: false,
+        defaultValue: sequelize.Sequelize.literal("nextval('seq_music')")
+    },
+    music_name: DataTypes.STRING(255),
+    music_author: DataTypes.STRING(255),
+    music_file: DataTypes.BLOB,
+    music_picture: DataTypes.BLOB,
+}, { freezeTableName: true, timestamps: false });
 
 const PORT = process.env.PORT;
 const __filename = fileURLToPath(import.meta.url);
@@ -150,13 +164,30 @@ class Server {
                     user_id: JSON.stringify(req.body.user_id)
                 }
             })
-            if (likes !== null && likes[0] !== undefined) {        
-                res.send({ stat: 0, likes: likes});
+            if (likes !== null && likes[0] !== undefined) {
+                res.send({ stat: 0, likes: likes });
                 console.log(likes[0])
             } else {
                 res.send({ stat: 400 });
             }
+        })
 
+        this.app.post("/upload_music", multer({ dest: "uploads" }).single('music'), async function (req, res) {
+            if (!req.body) return res.sendStatus(400);
+            console.log(JSON.stringify(req.body));
+            console.log(JSON.stringify(req.file));
+
+            res.send({ stat: 400 });
+            /*
+            let music = Buffer.from(JSON.stringify(req.body.music), 'binary').toString('base64');
+
+            await Music.create({
+                music_name: JSON.stringify(req.body.music_name),
+                music_author: JSON.stringify(req.body.music_author),
+                music_file: music,
+                music_picture: picture,
+            })
+            */
         })
     }
 
