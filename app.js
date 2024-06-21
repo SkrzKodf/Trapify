@@ -172,8 +172,14 @@ class Server {
             }
         })
 
-        this.app.post("/upload_music", multer({ dest: "uploads" }).single('music'), async function (req, res) {
+        this.app.post("/upload_music", multer().single('music'), async function (req, res) {
             if (!req.body) return res.sendStatus(400);
+
+            if (!req.files) {
+                res.send("File was not found");
+                return;
+            }
+
             console.log(JSON.stringify(req.body));
             console.log(JSON.stringify(req.file));
 
