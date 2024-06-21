@@ -3,8 +3,8 @@ import dotenv from "dotenv";
 import { Sequelize, DataTypes } from 'sequelize'
 dotenv.config();
 
-import {fileURLToPath} from "url";
-import {dirname} from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 import { NULL } from "sass";
 
 const sequelize = new Sequelize('MusicDB', 'postgres', 'admin', {
@@ -30,20 +30,42 @@ const UserInfo = sequelize.define('userinfo', {
         type: DataTypes.INTEGER,
         primaryKey: true,
         allowNull: false,
-        defaultValue: sequelize.Sequelize.literal("nextval('seq_userinfo')")},
+        defaultValue: sequelize.Sequelize.literal("nextval('seq_userinfo')")
+    },
     user_name: {
-        type: DataTypes.STRING(255),
-        foreignKey: true},
+        type: DataTypes.STRING(255)
+    },
     user_email: DataTypes.STRING(255),
     user_password: DataTypes.STRING(255),
     user_picture: DataTypes.BLOB,
-}, {freezeTableName: true, timestamps: false});
+}, { freezeTableName: true, timestamps: false });
+
+const FavoriteTracks = sequelize.define('favoritetracks', {
+    favoritetracks_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        allowNull: false,
+        defaultValue: sequelize.Sequelize.literal("nextval('seq_favoritetracks')")
+    },
+    user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'userinfo',
+            key: 'user_id',
+        }
+    },
+    music_id: {
+        type: DataTypes.INTEGER
+    },
+}, { freezeTableName: true, timestamps: false });
+
 
 const PORT = process.env.PORT;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-let rex_mail =  /^[\w\d%$:.-]+@\w+\.\w{2,5}$/;
+let rex_mail = /^[\w\d%$:.-]+@\w+\.\w{2,5}$/;
 
 class Server {
     constructor(port, app) {
@@ -53,7 +75,7 @@ class Server {
     get() {
         this.app.get('/', (req, res) => {
             console.log("To main page show");
-            res.redirect(301,"main")
+            res.redirect(301, "main")
         });
 
         this.app.get('/main', async (req, res) => { // Вынести в отдельный класс все функции которые ты будешь прокидывать в server.use()
@@ -66,7 +88,7 @@ class Server {
 
         this.app.get('/add_song', (req, res) => {
             console.log("To main page show");
-            res.redirect(301,"main")
+            res.redirect(301, "main")
         });
 
         this.app.get('/find', async (req, res) => {
@@ -81,36 +103,67 @@ class Server {
             let name = await UserInfo.findOne({
                 where: {
                     user_name: JSON.stringify(req.body.user_name)
-                }})
-            if (name !== null){
+                }
+            })
+            if (name !== null) {
                 console.log('Имя пользователя занято');
-                res.send({stat: 10});
-                return 0;} else {
-                    let email = await UserInfo.findOne({
-                        where: {
-                            user_email: JSON.stringify(req.body.user_email)
-                        }})
-                        if (email !== null) 
-                            {console.log('Почта занята занята');
-                            res.send({stat: 20});
-                            return 0;} else {
-                                await UserInfo.create({
-                                    user_name: JSON.stringify(req.body.user_name),
-                                    user_email: JSON.stringify(req.body.user_email),
-                                    user_password: JSON.stringify(req.body.user_password),
-                                    user_picture: JSON.stringify(req.body.user_picture),
-                                })
-                                console.log('Регистрация успешна')
-                                res.send({stat: 0});
+                res.send({ stat: 10 });
+                return 0;
+            } else {
+                let email = await UserInfo.findOne({
+                    where: {
+                        user_email: JSON.stringify(req.body.user_email)
+                    }
+                })
+                if (email !== null) {
+                    console.log('Почта занята занята');
+                    res.send({ stat: 20 });
+                    return 0;
+                } else {
+                    await UserInfo.create({
+                        user_name: JSON.stringify(req.body.user_name),
+                        user_email: JSON.stringify(req.body.user_email),
+                        user_password: JSON.stringify(req.body.user_password),
+                        user_picture: JSON.stringify(req.body.user_picture),
+                    })
+                    console.log('Регистрация успешна')
+                    res.send({ stat: 0 });
                 }
             }
         });
+
+        this.app.post("/like", async function (req, res) {
+            if (!req.body) return res.sendStatus(400);
+            console.log(req.body)
+            await FavoriteTracks.create({
+                user_id: JSON.stringify(req.body.user_id),
+                music_id: JSON.stringify(req.body.music_id),
+            })
+            res.send({ stat: 0 });
+        })
+
+        this.app.post("/get_likes", async function (req, res) {
+            if (!req.body) return res.sendStatus(400);
+            console.log(req.body)
+            let likes = await FavoriteTracks.findAll({
+                where: {
+                    user_id: JSON.stringify(req.body.user_id)
+                }
+            })
+            if (likes !== null && likes[0] !== undefined) {        
+                res.send({ stat: 0, likes: likes});
+                console.log(likes[0])
+            } else {
+                res.send({ stat: 400 });
+            }
+
+        })
     }
 
 
     listen() {
-        this.app.listen(this.port, (err) =>{
-            if(err){
+        this.app.listen(this.port, (err) => {
+            if (err) {
                 console.log(err);
             } else {
                 console.log(`http://localhost:${this.port}`);
