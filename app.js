@@ -5,9 +5,10 @@ dotenv.config();
 
 import {fileURLToPath} from "url";
 import {dirname} from "path";
+import { NULL } from "sass";
 
 const sequelize = new Sequelize('MusicDB', 'postgres', 'admin', {
-    host: 'localhost',
+    host: process.env.HOST,
     dialect: 'postgres',
     operatorsAliases: 0,
     pool: {
@@ -77,34 +78,36 @@ class Server {
         this.app.post("/reg", async function (req, res) {
             if (!req.body) return res.sendStatus(400);
             console.log(req.body, JSON.stringify(req.body.user_id));
-
-            if (JSON.stringify(req.body.user_name) === await UserInfo.findAll({
+            let name = await UserInfo.findOne({
                 where: {
                     user_name: JSON.stringify(req.body.user_name)
-                }
-            })){console.log('Имя пользователя занято');
+                }})
+            if (name !== null){
+                console.log('Имя пользователя занято');
                 res.send({stat: 10});
                 return 0;} else {
-                if (JSON.stringify(req.body.user_email) === await UserInfo.findAll({
-                    where: {
-                        user_email: JSON.stringify(req.body.user_email)
-                    }
-                })){console.log('Почта занята занята');
-                    res.send({stat: 20});
-                    return 0;} else {
-                    await UserInfo.create({
-                        user_name: JSON.stringify(req.body.user_name),
-                        user_email: JSON.stringify(req.body.user_email),
-                        user_password: JSON.stringify(req.body.user_password),
-                        user_picture: JSON.stringify(req.body.user_picture),
-                    })
-                    console.log('Регистрация успешна')
-                    res.send({stat: 0});
+                    let email = await UserInfo.findOne({
+                        where: {
+                            user_email: JSON.stringify(req.body.user_email)
+                        }})
+                        if (email !== null) 
+                            {console.log('Почта занята занята');
+                            res.send({stat: 20});
+                            return 0;} else {
+                                await UserInfo.create({
+                                    user_name: JSON.stringify(req.body.user_name),
+                                    user_email: JSON.stringify(req.body.user_email),
+                                    user_password: JSON.stringify(req.body.user_password),
+                                    user_picture: JSON.stringify(req.body.user_picture),
+                                })
+                                console.log('Регистрация успешна')
+                                res.send({stat: 0});
                 }
             }
-
         });
     }
+
+
     listen() {
         this.app.listen(this.port, (err) =>{
             if(err){
