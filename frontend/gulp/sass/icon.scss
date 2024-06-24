@@ -1,55 +1,33 @@
-// @mixin like-icon($color: #ffffff, $size: 24px) {
-//     font-family: 'Material Icons';
-//     font-size: $size;
-//     color: $color;
-//     content: 'favorite'; // Иконка лайка 
-// }
-
-// @mixin repeat-icon($color: #ffffff, $size: 24px) {
-//     font-family: 'Material Icons';
-//     font-size: $size;
-//     color: $color;
-//     content: 'repeat'; // Иконка повтора 
-// }
-
-// @mixin search-icon($color: #ffffff, $size: 24px) {
-//     font-family: 'Material Icons';
-//     font-size: $size;
-//     color: $color;
-//     content: 'search'; // Иконка поиска
-// }
-
-// @mixin home-icon($color: #ffffff, $size: 24px) {
-//     font-family: 'Material Icons';
-//     font-size: $size;
-//     color: $color;
-//     content: 'home'; // Иконка домой 
-// }
-
-html {
-    font-size: 16px;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0
-}
-
 .icon {
     &__bold {
-        font-variation-settings: 'fill' 0,'wght' 600, 'grad' 0, 'opsz' 24;
+        font-variation-settings:
+            'fill' 0,
+            'wght' 600,
+            'grad' 0,
+            'opsz' 24;
     }
 
     &__light {
-        font-variation-settings: 'fill' 0, 'wght' 100, 'grad' 0, 'opsz' 24;
+        font-variation-settings:
+            'fill' 0,
+            'wght' 100,
+            'grad' 0,
+            'opsz' 24;
     }
-   
+
     &__light-fill {
-        font-variation-settings: 'fill' 1,'wght' 100, 'grad' 0, 'opsz' 24;
+        font-variation-settings:
+            'fill' 1,
+            'wght' 100,
+            'grad' 0,
+            'opsz' 24;
     }
 
     &__bold-fill {
-        font-variation-settings: 'fill' 1,'wght' 600, 'grad' 0, 'opsz' 24;
+        font-variation-settings:
+            'fill' 1,
+            'wght' 600,
+            'grad' 0,
+            'opsz' 24;
     }
 }
