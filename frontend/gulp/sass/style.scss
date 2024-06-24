@@ -1,26 +1,13 @@
-@import "theme";
-@import "text";
+@import 'theme';
+@import 'text';
+@import 'theme';
 
-.test1 {
-    @include h1-style;
+html {
+    font-size: 16px;
 }
 
-.test2 {
-    @include h2-style;
-}
-
-.test3 {
-    @include h3-style;
-}
-
-.test4 {
-    @include text1-style;
-}
-
-.test5 {
-    @include text2-style;
-}
-
-.test6 {
-    @include text3-style;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
