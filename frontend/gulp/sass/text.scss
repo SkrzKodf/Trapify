@@ -1,18 +1,18 @@
+@import "theme";
+
 :root {
-    --dev-h1-font: 'Regular';
+    --dev-h1-font: sans-serif;
     --dev-h1-size: 2.8rem; //45
-    --dev-h2-font: 'Regular';
+    --dev-h2-font: sans-serif;
     --dev-h2-size: 2.5rem; //40
-    --dev-h3-font: 'Bold';
+    --dev-h3-font: sans-serif;
     --dev-h3-size: 2.1rem; //35
-    --dev-text1-font: 'Bold';
+    --dev-text1-font: sans-serif;
     --dev-text1-size: 1.56rem; //25
-    --dev-text2-font: 'Regular';
+    --dev-text2-font: sans-serif;
     --dev-text2-size: 1.56rem; //25
-    --dev-text3-font: 'Regular';
+    --dev-text3-font: sans-serif;
     --dev-text3-size: 1.25rem; //20
-    --dev-text4-font: 'Regular';
-    --dev-text4-size: 1.25rem; //20
 }
 
 //Большие подписи 
@@ -31,12 +31,14 @@
 @mixin h3-style {
     font-family: var(--dev-h3-font);
     font-size: var(--dev-h3-size);
+    font-weight: 700;
 }
 
 //Названия
 @mixin text1-style {
     font-family: var(--dev-text1-font);
     font-size: var(--dev-text1-size);
+    font-weight: 700;
 }
 
 //Исполнитель
@@ -50,10 +52,3 @@
     font-family: var(--dev-text3-font);
     font-size: var(--dev-text3-size);
 }
-
-@mixin text4-style {
-    font-family: var(--dev-text4-font);
-    font-size: var(--dev-text4-size);
-}
-
-@import "theme.scss";

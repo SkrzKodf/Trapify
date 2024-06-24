@@ -1,2 +1,26 @@
-@import "text.scss";
-@import "theme.scss";
+@import "theme";
+@import "text";
+
+.test1 {
+    @include h1-style;
+}
+
+.test2 {
+    @include h2-style;
+}
+
+.test3 {
+    @include h3-style;
+}
+
+.test4 {
+    @include text1-style;
+}
+
+.test5 {
+    @include text2-style;
+}
+
+.test6 {
+    @include text3-style;
+}
