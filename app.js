@@ -75,78 +75,127 @@ const Music = sequelize.define('music', {
     music_picture: DataTypes.BLOB,
 }, { freezeTableName: true, timestamps: false });
 
+
+const User_authDTO = (sequelize) => {
+    const User = sequelize.define('userinfo', {
+        user_email: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        user_name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        user_picture: {
+            type: DataTypes.BLOB,
+            allowNull: true
+        }
+    });
+    return User;
+};
+
 const PORT = process.env.PORT;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-let rex_mail = /^[\w\d%$:.-]+@\w+\.\w{2,5}$/;
+let rex_mail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 
-class Server {
-    constructor(port, app) {
-        this.port = port;
-        this.app = app;
-    }
-    get() {
-        this.app.get('/', (req, res) => {
+class Page {
+    static redirect_to_main_paige() {
+        server.app.get('/', (req, res) => {
             console.log("To main page show");
             res.redirect(301, "main")
         });
+    }
 
-        this.app.get('/main', async (req, res) => { // Вынести в отдельный класс все функции которые ты будешь прокидывать в server.use()
+    static show_main_page() {
+        server.app.get('/main', async (req, res) => {
             try {
                 res.sendFile(__dirname + "/main.html");
             } catch (err) {
                 console.error(err);
             }
         });
-
-        this.app.get('/add_song', (req, res) => {
-            console.log("To main page show");
-            res.redirect(301, "main")
-        });
-
-        this.app.get('/find', async (req, res) => {
-            let user = await UserInfo.findAll()
-            console.log(user);
-        });
     }
-    post() {
-        this.app.post("/reg", async function (req, res) {
+}
+
+class User {
+    static registration() {
+        server.app.post("/reg", multer().single('picture'), async (req, res) => {
             if (!req.body) return res.sendStatus(400);
-            console.log(req.body, JSON.stringify(req.body.user_id));
+
+            if ((JSON.stringify(req.body.user_name)).length < 3) {
+                res.send({ stat: 33, info: "Имя пользователя меньше 3 символов" });
+                return 0;
+            }
+
+            if ((JSON.stringify(req.body.user_password)).length < 8) {
+                res.send({ stat: 88, info: "Пароль пользователя меньше 8 символов" });
+                return 0;
+            }
+
+            let check = rex_mail.test(String(JSON.stringify(req.body.user_email).toLowerCase()))
+            if (!check) {
+                res.send({ stat: 1488, info: "Ошибка почты, мы о таких не слышали" });
+                return 0;
+            }
+
             let name = await UserInfo.findOne({
                 where: {
                     user_name: JSON.stringify(req.body.user_name)
                 }
             })
-            if (name !== null) {
+
+            if (name) {
                 console.log('Имя пользователя занято');
-                res.send({ stat: 10 });
-                return 0;
-            } else {
-                let email = await UserInfo.findOne({
-                    where: {
-                        user_email: JSON.stringify(req.body.user_email)
-                    }
-                })
-                if (email !== null) {
-                    console.log('Почта занята занята');
-                    res.send({ stat: 20 });
-                    return 0;
-                } else {
-                    await UserInfo.create({
-                        user_name: JSON.stringify(req.body.user_name),
-                        user_email: JSON.stringify(req.body.user_email),
-                        user_password: JSON.stringify(req.body.user_password),
-                        user_picture: JSON.stringify(req.body.user_picture),
-                    })
-                    console.log('Регистрация успешна')
-                    res.send({ stat: 0 });
+                res.send({ stat: 10, info: "Имя пользователя занято" });
+                return;
+            }
+
+            let email = await UserInfo.findOne({
+                where: {
+                    user_email: JSON.stringify(req.body.user_email).toLowerCase()
                 }
+            })
+
+            if (email) {
+                console.log('Почта занята занята');
+                res.send({ stat: 20, info: "Почта занята занята" });
+                return;
+            } else {
+                await UserInfo.create({
+                    user_name: JSON.stringify(req.body.user_name),
+                    user_email: JSON.stringify(req.body.user_email).toLowerCase(),
+                    user_password: JSON.stringify(req.body.user_password),
+                    user_picture: JSON.stringify(req.file),
+                })
+                console.log('Регистрация успешна')
+                res.send({ stat: 1, info: "Регистрация успешна" });
             }
         });
+    }
 
-        this.app.post("/like", async function (req, res) {
+    static auth() {
+        server.app.post("/enter", async (req, res) => {
+            if (!req.body) return res.sendStatus(400);
+            console.log(req.body)
+            let user = await User_authDTO.findAll({
+                where: {
+                    user_email: JSON.stringify(req.body.user_email).toLowerCase(),
+                    user_password: JSON.stringify(req.body.user_password),
+                }
+            })
+            if (user && user[0]) {
+                res.send({ stat: 0, user: user[0] });
+                console.log(user[0])
+            } else {
+                res.send({ stat: 400 });
+            }
+        })
+    }
+
+    static like() {
+        server.app.post("/like", async (req, res) => {
             if (!req.body) return res.sendStatus(400);
             console.log(req.body)
             await FavoriteTracks.create({
@@ -155,8 +204,10 @@ class Server {
             })
             res.send({ stat: 0 });
         })
+    }
 
-        this.app.post("/get_likes", async function (req, res) {
+    static get_like() {
+        server.app.post("/get_likes", async (req, res) => {
             if (!req.body) return res.sendStatus(400);
             console.log(req.body)
             let likes = await FavoriteTracks.findAll({
@@ -171,30 +222,69 @@ class Server {
                 res.send({ stat: 400 });
             }
         })
+    }
+}
 
-        this.app.post("/upload_music", multer().single('music'), async function (req, res) {
+class cMusic {
+    static upload_music() {
+        server.app.post("/upload_music", multer().single('music'), async (req, res) => {
             if (!req.body) return res.sendStatus(400);
 
-            if (!req.files) {
-                res.send("File was not found");
-                return;
-            }
-
-            console.log(JSON.stringify(req.body));
-            console.log(JSON.stringify(req.file));
+            console.log(JSON.stringify(req.file))
 
             res.send({ stat: 400 });
-            /*
-            let music = Buffer.from(JSON.stringify(req.body.music), 'binary').toString('base64');
 
             await Music.create({
-                music_name: JSON.stringify(req.body.music_name),
-                music_author: JSON.stringify(req.body.music_author),
-                music_file: music,
-                music_picture: picture,
+                music_name: JSON.stringify(req.file.originalname),
+                //music_author: JSON.stringify(req.file.author),
+                music_file: JSON.stringify(req.file.buffer),
+                //music_picture: picture,
             })
-            */
         })
+    }
+
+    static get_music() {
+        server.app.post("/get_music", async (req, res) => {
+            if (!req.body) return res.sendStatus(400);
+            console.log(JSON.stringify(req.body));
+
+            let blob = await Music.findOne({
+                where: {
+                    music_id: JSON.stringify(req.body.music_id)
+                }
+            })
+
+            let music_file = JSON.stringify({
+                "fieldname": "music",
+                "originalname": blob.music_name,
+                "encoding": "7bit",
+                "mimetype": "audio/mpeg",
+                "buffer": blob.music_file
+            })
+
+            console.log(music_file)
+            res.sendFile(multer(music_file));
+        })
+    }
+}
+
+class Server {
+    constructor(port, app) {
+        this.port = port;
+        this.app = app;
+    }
+    get() {
+        Page.redirect_to_main_paige();
+        Page.show_main_page();
+    }
+    post() {
+        User.registration();
+        User.auth();
+        User.like();
+        User.get_like();
+
+        cMusic.upload_music();
+        cMusic.get_music();
     }
 
 
