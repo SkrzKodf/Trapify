@@ -11,3 +11,97 @@ html {
     margin: 0;
     padding: 0;
 }
+
+h1{
+    @include h1-style;
+}
+
+h2{
+    @include h2-style;
+}
+
+h3{
+    @include h3-style;
+}
+
+h4{
+    @include h4-style;
+}
+
+h5{
+    @include h4-style;
+    color: var(--white);
+}
+
+a{
+   color: var(--color-text-red);
+   text-decoration: none; 
+}
+
+
+
+.login-form{
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: 25px;
+    width: 29.68rem;
+
+    .login-form__header{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 4rem;
+    }
+
+    .login-form__labels-text{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-form__labels{
+        margin-left: auto;
+        margin-right: auto;
+        background-color: var(--color-input);
+        border-radius: 8px;
+        display: flex;
+        height: 3.125rem;
+        width: 26.87rem;
+        margin-top: 0rem;
+        margin-bottom: 0.93rem;
+        padding: 0.62rem;
+        border: none;
+        font-size: var(--dev-text3-size);
+    }
+
+    .login-form__button{
+        @include text2-style;
+        justify-content: center; 
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: var(--color-but-entry);
+        border-radius: 12px; 
+        height: 3.75rem;
+        width: 26.87rem;
+        display: flex;
+        margin-top: 4rem;
+        margin-bottom: 0.93rem;
+        border: none;
+    }
+
+    .login-form__button-text{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-form__registration-text{
+        @include text3-style;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+}

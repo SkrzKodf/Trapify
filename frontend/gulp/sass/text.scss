@@ -7,6 +7,8 @@
     --dev-h2-size: 2.5rem; //40
     --dev-h3-font: sans-serif;
     --dev-h3-size: 2.1rem; //35
+    --dev-h4-font: sans-serif;
+    --dev-h4-size: 1.875rem; //30
     --dev-text1-font: sans-serif;
     --dev-text1-size: 1.56rem; //25
     --dev-text2-font: sans-serif;
@@ -31,6 +33,13 @@
 @mixin h3-style {
     font-family: var(--dev-h3-font);
     font-size: var(--dev-h3-size);
+    font-weight: 700;
+}
+
+//email_логин_пароль
+@mixin h4-style {
+    font-family: var(--dev-h4-font);
+    font-size: var(--dev-h4-size);
     font-weight: 700;
 }
 
