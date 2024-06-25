@@ -17,7 +17,7 @@ gulp.task('sass', () => {
 
 gulp.task('js', () => {
     return gulp
-        .src('./gulp/js/**/*.js')
+        .src('./frontend/gulp/js/**/*.js')
         .pipe(
             minify({
                 ext: {
