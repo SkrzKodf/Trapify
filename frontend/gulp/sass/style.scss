@@ -16,27 +16,22 @@ html {
     background-color: var(--black);
     width: 100%;
     padding: 1rem;
-    //height: 5.625rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    //.bold-ico {
     .ico {
         font-variation-settings:
             'opsz' 180;
     }
 
     .ico-setting {
+        cursor: pointer;
         color: var(--white);
-
-        //font-size: 2.5rem;
-        //width: 2.5rem;
     }
 
     .upmenu__home {
         @include h3-style;
-        //padding-left: 1rem;
         text-align: left;
         text-decoration: none;
         color: var(--white);
@@ -45,16 +40,32 @@ html {
     .upmenu__like {
         @include h3-style;
         text-align: center;
-        //padding-right: 1rem;
         text-decoration: none;
         color: var(--white);
     }
 
     .upmenu__search {
         @include h3-style;
-        //padding-right: 1rem;
         text-align: right;
         text-decoration: none;
         color: var(--white);
+    }
+}
+
+@media (max-width: 1600px) {
+
+    .upmenu .upmenu__home,
+    .upmenu .upmenu__like,
+    .upmenu .upmenu__search {
+        @include h4-style;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .upmenu__home,
+    .upmenu__like,
+    .upmenu__search {
+        display: none;
     }
 }
