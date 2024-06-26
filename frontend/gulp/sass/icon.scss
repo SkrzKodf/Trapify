@@ -31,3 +31,43 @@
             'opsz' 24;
     }
 }
+
+@media (max-width: 1600px) {
+    .icon {
+        &__bold {
+            font-variation-settings: 'opsz' 48;
+        }
+
+        &__light {
+            font-variation-settings: 'opsz' 48;
+        }
+
+        &__light-fill {
+            font-variation-settings: 'opsz' 48;
+        }
+
+        &__bold-fill {
+            font-variation-settings: 'opsz' 48;
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .icon {
+        &__bold {
+            font-variation-settings: 'opsz' 24;
+        }
+
+        &__light {
+            font-variation-settings: 'opsz' 24;
+        }
+
+        &__light-fill {
+            font-variation-settings: 'opsz' 24;
+        }
+
+        &__bold-fill {
+            font-variation-settings: 'opsz' 24;
+        }
+    }
+}

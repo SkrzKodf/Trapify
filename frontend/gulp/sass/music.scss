@@ -1,0 +1,62 @@
+@import 'theme';
+@import 'text';
+
+.main{
+    display: flex;  
+    flex-direction: row;
+    background-color: var(--grey);
+    justify-content: space-between;
+}
+
+.one{
+    display: flex;
+    flex-direction: row;
+}
+
+.text{
+    display: flex;
+    flex-direction: column;
+}
+
+.iconElement{
+    display: flex;
+    background-color: black;
+}
+
+.material-symbols-outlined{
+    color: white;
+    font-weight: 100;
+    width: 5rem;
+    height: 5rem;
+    margin-top: 2rem;
+}
+
+.image{
+    background-color: var(--light-grey);
+    width: 5rem;
+    height: 5rem;
+    border-radius: 8px;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+}
+
+.title{
+    width: 20rem;
+    height: 2.5rem;
+    font-size: var(--dev-text1-size);
+    font-family: var(--dev-text1-font);
+    font-weight: 700;
+    margin-left: 1.25rem;
+    margin-top: 0.8rem;
+    color: var(--white);
+}
+
+.author{
+    width: 20rem;
+    height: 2.5rem;
+    font-size: var(--dev-text2-size);
+    font-family: var(--dev-text2-font);
+    margin-left: 1.25rem;
+    color: var(--white);
+}
+

@@ -1,6 +1,6 @@
 @import 'theme';
 @import 'text';
-@import 'theme';
+@import 'music';
 
 html {
     font-size: 16px;
@@ -37,8 +37,6 @@ a{
    color: var(--color-text-red);
    text-decoration: none; 
 }
-
-
 
 .login-form{
     background-color: var(--white);
