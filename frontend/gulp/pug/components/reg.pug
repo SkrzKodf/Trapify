@@ -1,5 +1,5 @@
 mixin reg()
-    form.parent.reg_form(action="/register", method="post")
+    form.reg_form(action="/register", method="post")
         div.reg_text 
             h1 Зарегистрируйтесь и погрузитесь в музыку
         div.reg_block_input
@@ -12,8 +12,7 @@ mixin reg()
             div.reg_input
                 label(for="password") Пароль
                 input(type="password", id="password", name="password" required, placeholder = "Пароль")
-        div.reg_but
-            button(type="submit") Регистрация
+        button.reg_but(type="submit") Регистрация
         div.dop_text
             p Есть аккаунт?
             a(href='#') Войти
