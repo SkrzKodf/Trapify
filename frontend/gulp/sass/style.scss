@@ -17,7 +17,7 @@ h1 {
 }
 
 
-.upmenu {
+header {
     background-color: var(--black);
     width: 100%;
     padding: 1rem;
@@ -73,4 +73,21 @@ h1 {
     .upmenu__search {
         display: none;
     }
+}
+
+.playCont {
+    padding: 1rem;
+    display: inline-block;
+    text-align: center;
+}
+
+.image {
+    background-color: #7E7E7E;
+    width: 13rem;
+    height: 13rem;
+    border-radius: 20px;
+}
+
+.name {
+    @include h4-style;
 }

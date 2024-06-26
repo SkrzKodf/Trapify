@@ -10,7 +10,7 @@ mixin doc(css, js)
 
             for file of css 
                 link(rel="stylesheet" href=`./style/${file}.min.css`)
-        body
+        body#body
             for file of js
                 script(async type="module", src=`./js/${file}.min.js`)
             block
