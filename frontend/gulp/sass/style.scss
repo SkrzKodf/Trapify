@@ -15,3 +15,62 @@ html {
 h1 {
     @include h1-style;
 }
+
+
+.upmenu {
+    background-color: var(--black);
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .ico {
+        font-variation-settings:
+            'opsz' 180;
+    }
+
+    .ico-setting {
+        cursor: pointer;
+        color: var(--white);
+    }
+
+    .upmenu__home {
+        @include h3-style;
+        text-align: left;
+        text-decoration: none;
+        color: var(--white);
+    }
+
+    .upmenu__like {
+        @include h3-style;
+        text-align: center;
+        text-decoration: none;
+        color: var(--white);
+    }
+
+    .upmenu__search {
+        @include h3-style;
+        text-align: right;
+        text-decoration: none;
+        color: var(--white);
+    }
+}
+
+@media (max-width: 1600px) {
+
+    .upmenu .upmenu__home,
+    .upmenu .upmenu__like,
+    .upmenu .upmenu__search {
+        @include h4-style;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .upmenu__home,
+    .upmenu__like,
+    .upmenu__search {
+        display: none;
+    }
+}
