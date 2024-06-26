@@ -12,6 +12,11 @@ html {
     padding: 0;
 }
 
+h1 {
+    @include h1-style;
+}
+
+
 .upmenu {
     background-color: var(--black);
     width: 100%;
