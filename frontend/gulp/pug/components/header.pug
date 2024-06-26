@@ -1,15 +1,12 @@
 
 mixin header()
-    header.upmenu
-        div
-            ico.ico-setting
-                +bold-ico('home')
-            a(href='#',class='upmenu__home') Главная
-        div
-            ico.ico-setting
-                +bold-ico('favorite')
-            a(href='#',class='upmenu__like') Любимое
-        div
-            ico.ico-setting
-                +bold-ico('search')
-            a(href='#',class='upmenu__search') Поиск
+    header
+        div.upmenu-button
+            +bold-ico('home')
+            a.upmenu__button__text(href='#') Главная
+        div.upmenu-button
+            +bold-ico('favorite')
+            a.upmenu__button__text(href='#') Любимое
+        div.upmenu-button
+            +bold-ico('search')
+            a.upmenu__button__text(href='#') Поиск
