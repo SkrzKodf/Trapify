@@ -1,0 +1,30 @@
+@import 'theme';
+@import 'text';
+
+header {
+    background-color: var(--black);
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+
+    .upmenu-button {
+        cursor: pointer;
+        color: var(--white);
+    }
+
+    .upmenu__button__text {
+        @include h3-style;
+        text-align: right;
+        text-decoration: none;
+        color: var(--white);
+    }
+}
+
+@media (max-width: 400px) {
+    .upmenu__button__text {
+        display: none;
+    }
+}
