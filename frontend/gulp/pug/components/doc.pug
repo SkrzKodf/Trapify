@@ -3,6 +3,7 @@ mixin doc(css, js)
     doctype html
     html(lang="ru")
         head
+            meta(name="viewport" content="width=device-width, initial-scale=1.0")
             meta(charset="utf-8")
             meta(name="viewport", content="width=device-width, initial-scale=1.0")
             title TRAPIFY
@@ -13,4 +14,5 @@ mixin doc(css, js)
         body
             for file of js
                 script(async type="module", src=`./js/${file}.min.js`)
-            block
+            div.page-wrapper.parent
+                block
