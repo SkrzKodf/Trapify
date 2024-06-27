@@ -30,7 +30,7 @@ export const UserInfo = sequelize.define('userinfo', {
     user_email: DataTypes.STRING(255),
     user_password: DataTypes.STRING(255),
     user_picture: DataTypes.BLOB,
-}, { freezeTableName: true, timestamps: false});
+}, { freezeTableName: true, timestamps: false });
 UserInfo.sync({ force: false })
 
 export const FavoriteTracks = sequelize.define('favoritetracks', {
@@ -48,7 +48,12 @@ export const FavoriteTracks = sequelize.define('favoritetracks', {
         }
     },
     music_id: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'music',
+            key: 'music_id',
+        }
     },
 }, { freezeTableName: true, timestamps: false });
 FavoriteTracks.sync({ force: false })
@@ -65,4 +70,41 @@ export const Music = sequelize.define('music', {
     music_picture: DataTypes.BLOB,
 }, { freezeTableName: true, timestamps: false });
 Music.sync({ force: false })
+
+export const PlayList = sequelize.define('playlist', {
+    playlist_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    playlist_name: DataTypes.STRING(255),
+    playlist_pic: DataTypes.BLOB,
+}, { freezeTableName: true, timestamps: false });
+PlayList.sync({ force: false })
+
+export const PlayListMusic = sequelize.define('playlistmusic', {
+    playlist_music_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    playlist_id_mus: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'playlist',
+            key: 'playlist_id',
+        }
+    },
+    music_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'music',
+            key: 'music_id',
+        }
+    }
+}, { freezeTableName: true, timestamps: false });
+PlayListMusic.sync({ force: false })
+
 

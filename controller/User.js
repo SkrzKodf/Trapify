@@ -93,36 +93,49 @@ UserRouter.post("/reg", multer().single('picture'), async (req, res) => {
 });
 
 UserRouter.get("/valid", async (req, res) => {
-    if (!req.body) return res.sendStatus(400);
-    const value = req.url.substring(req.url.lastIndexOf('=') + 1);
-    console.log(value)
+    try {
+        if (!req.body) return res.sendStatus(400);
+        const value = req.url.substring(req.url.lastIndexOf('=') + 1);
+        if (!value) return res.sendStatus(400);
+        console.log(value)
 
-    let userdata
-    jwt.verify(value, SECRET, async (err, user) => {
-        console.log(user)
-        if (!user) {
-            res.send({ stat: 400, info: err });
-            return
-        }
-        await UserInfo.create({
-            user_name: user.user_name,
-            user_email: user.user_email.toLowerCase(),
-            user_password: user.user_password,
-        })
-        userdata = await UserInfo.findOne({
-            where: {
-                user_email: user.user_email.toLowerCase(),
-                user_password: user.user_password,
+        let userdata
+        jwt.verify(value, SECRET, async (err, user) => {
+            try {
+                console.log(user)
+                if (!user) {
+                    return
+                }
+                if (err) {
+                    console.log(err)
+                    res.send({ stat: 418, info: "Запрос некорректный" });
+                    return
+                }
+                await UserInfo.create({
+                    user_name: user.user_name,
+                    user_email: user.user_email.toLowerCase(),
+                    user_password: user.user_password,
+                })
+                userdata = await UserInfo.findOne({
+                    where: {
+                        user_email: user.user_email.toLowerCase(),
+                        user_password: user.user_password,
+                    }
+                })
+                if (userdata && userdata[0]) {
+                    req.session.user_id = userdata[0].user_id;
+                    console.log(req.session.user_id);
+                }
+            } catch {
+                console.log("Ошибка верификации")
+                return
             }
         })
-        if (userdata && userdata[0]) {
-            req.session.user_id = userdata[0].user_id;
-            console.log(req.session.user_id);
-        }
-    })
 
-    console.log('Регистрация успешна')
-    res.send({ stat: 1, info: "Регистрация успешна" });
+        res.send({ stat: 200, info: "Выполнено" });
+    } catch {
+        res.send({ stat: 418, info: "Запрос некорректный" });
+    }
 })
 
 UserRouter.post("/enter", async (req, res) => {
@@ -145,29 +158,33 @@ UserRouter.post("/enter", async (req, res) => {
 })
 
 UserRouter.post("/like_music", async (req, res) => {
-    if (!req.body) return res.sendStakjtus(400);
-    console.log(JSON.stringify(req.body))
-    const find_like = await FavoriteTracks.findOne({
-        where: {
-            user_id: JSON.stringify(req.body.user_id),
-            music_id: JSON.stringify(req.body.music_id),
-        }
-    })
-    console.log(find_like)
-    if (find_like) {
-        await FavoriteTracks.destroy({
+    try {
+        if (!req.body) return res.sendStatus(400);
+        console.log(JSON.stringify(req.body))
+        const find_like = await FavoriteTracks.findOne({
             where: {
                 user_id: JSON.stringify(req.body.user_id),
                 music_id: JSON.stringify(req.body.music_id),
             }
         })
-        res.send({ stat: 200, info: "Лайк убран" });
-    } else {
-        await FavoriteTracks.create({
-            user_id: JSON.stringify(req.body.user_id),
-            music_id: JSON.stringify(req.body.music_id),
-        })
-        res.send({ stat: 200, info: "Лайк поставлен" });
+        console.log(find_like)
+        if (find_like) {
+            await FavoriteTracks.destroy({
+                where: {
+                    user_id: JSON.stringify(req.body.user_id),
+                    music_id: JSON.stringify(req.body.music_id),
+                }
+            })
+            res.send({ stat: 200, info: "Лайк убран" });
+        } else {
+            await FavoriteTracks.create({
+                user_id: JSON.stringify(req.body.user_id),
+                music_id: JSON.stringify(req.body.music_id),
+            })
+            res.send({ stat: 200, info: "Лайк поставлен" });
+        }
+    } catch {
+        res.send({ stat: 418, info: "Запрос некорректный" });
     }
 })
 
