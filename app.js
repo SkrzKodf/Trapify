@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import session from "express-session";
+import multer from 'multer'
 
 import { UserRouter } from "./controller/User.js";
 import { PageRouter } from "./controller/Page.js";
@@ -42,7 +43,7 @@ server.app.use(express.static(__dirname));
 
 server.app.use(session({
     secret: 'somevalue',
-    resave: true,
+    resave: true, 
     saveUninitialized: false,
 }));
 

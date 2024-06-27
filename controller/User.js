@@ -97,6 +97,7 @@ UserRouter.get("/valid", async (req, res) => {
     const value = req.url.substring(req.url.lastIndexOf('=') + 1);
     console.log(value)
 
+    let userdata
     jwt.verify(value, SECRET, async (err, user) => {
         console.log(user)
         if (!user) {
@@ -108,6 +109,16 @@ UserRouter.get("/valid", async (req, res) => {
             user_email: user.user_email.toLowerCase(),
             user_password: user.user_password,
         })
+        userdata = await UserInfo.findOne({
+            where: {
+                user_email: user.user_email.toLowerCase(),
+                user_password: user.user_password,
+            }
+        })
+        if (userdata && userdata[0]) {
+            req.session.user_id = userdata[0].user_id;
+            console.log(req.session.user_id);
+        }
     })
 
     console.log('Регистрация успешна')
@@ -125,7 +136,6 @@ UserRouter.post("/enter", async (req, res) => {
     })
     if (user && user[0]) {
         req.session.user_id = user[0].user_id;
-        console.log(user[0].user_id)
         console.log(req.session.user_id);
         res.send({ stat: 1, user: user[0] });
         console.log(user[0])
@@ -134,17 +144,34 @@ UserRouter.post("/enter", async (req, res) => {
     }
 })
 
-UserRouter.post("/like", async (req, res) => {
-    if (!req.body) return res.sendStatus(400);
-    console.log(req.body)
-    await FavoriteTracks.create({
-        user_id: JSON.stringify(req.body.user_id),
-        music_id: JSON.stringify(req.body.music_id),
+UserRouter.post("/like_music", async (req, res) => {
+    if (!req.body) return res.sendStakjtus(400);
+    console.log(JSON.stringify(req.body))
+    const find_like = await FavoriteTracks.findOne({
+        where: {
+            user_id: JSON.stringify(req.body.user_id),
+            music_id: JSON.stringify(req.body.music_id),
+        }
     })
-    res.send({ stat: 0 });
+    console.log(find_like)
+    if (find_like) {
+        await FavoriteTracks.destroy({
+            where: {
+                user_id: JSON.stringify(req.body.user_id),
+                music_id: JSON.stringify(req.body.music_id),
+            }
+        })
+        res.send({ stat: 200, info: "Лайк убран" });
+    } else {
+        await FavoriteTracks.create({
+            user_id: JSON.stringify(req.body.user_id),
+            music_id: JSON.stringify(req.body.music_id),
+        })
+        res.send({ stat: 200, info: "Лайк поставлен" });
+    }
 })
 
-UserRouter.post("/get_likes", async (req, res) => {
+UserRouter.post("/get_likes_music", async (req, res) => {
     if (!req.body) return res.sendStatus(400);
     console.log(req.body)
     let likes = await FavoriteTracks.findAll({
@@ -152,8 +179,8 @@ UserRouter.post("/get_likes", async (req, res) => {
             user_id: JSON.stringify(req.body.user_id)
         }
     })
-    if (likes !== null && likes[0] !== undefined) {
-        res.send({ stat: 0, likes: likes });
+    if (likes && likes[0]) {
+        res.send({ stat: 200, likes: likes });
         console.log(likes[0])
     } else {
         res.send({ stat: 400 });
