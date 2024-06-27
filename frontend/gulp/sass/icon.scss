@@ -12,7 +12,7 @@
             'fill' 0,
             'wght' 100,
             'grad' 0,
-            'opsz' 24;
+            'opsz' 48;
     }
 
     &__light-fill {
@@ -20,7 +20,7 @@
             'fill' 1,
             'wght' 100,
             'grad' 0,
-            'opsz' 24;
+            'opsz' 48;
     }
 
     &__bold-fill {
@@ -28,26 +28,26 @@
             'fill' 1,
             'wght' 600,
             'grad' 0,
-            'opsz' 24;
+            'opsz' 48;
     }
 }
 
 @media (max-width: 1600px) {
     .icon {
         &__bold {
-            font-variation-settings: 'opsz' 48;
+            font-size: 36px;
         }
 
         &__light {
-            font-variation-settings: 'opsz' 48;
+            font-size: 36px;
         }
 
         &__light-fill {
-            font-variation-settings: 'opsz' 48;
+            font-size: 36px;
         }
 
         &__bold-fill {
-            font-variation-settings: 'opsz' 48;
+            font-size: 36px;
         }
     }
 }
@@ -55,19 +55,19 @@
 @media (max-width: 400px) {
     .icon {
         &__bold {
-            font-variation-settings: 'opsz' 24;
+            font-size: 24px;
         }
 
         &__light {
-            font-variation-settings: 'opsz' 24;
+            font-size: 24px;
         }
 
         &__light-fill {
-            font-variation-settings: 'opsz' 24;
+            font-size: 24px;
         }
 
         &__bold-fill {
-            font-variation-settings: 'opsz' 24;
+            font-size: 24px;
         }
     }
 }

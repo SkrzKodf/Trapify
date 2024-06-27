@@ -23,18 +23,19 @@ class Playlist extends HTMLElement {
 
         const iconElement = document.createElement('span');
         iconElement.classList.add('material-symbols-outlined');
-        iconElement.textContent = 'favorite'
+        iconElement.classList.add('icon__light');
+        iconElement.textContent = 'favorite';
 
         const imageElement = document.createElement('div');
         imageElement.classList.add('image');
-        
-        const titleElement = document.createElement('div'); 
-        titleElement.classList.add('title');
-        titleElement.textContent = this.title
 
-        const authorElement = document.createElement('div'); 
+        const titleElement = document.createElement('div');
+        titleElement.classList.add('title');
+        titleElement.textContent = this.title;
+
+        const authorElement = document.createElement('div');
         authorElement.classList.add('author');
-        authorElement.textContent = this.author
+        authorElement.textContent = this.author;
 
         main.appendChild(one);
         one.appendChild(imageElement);
@@ -55,7 +56,6 @@ const json = [
     { title: 'Название', author: 'Исполнитель', id: 1 },
     { title: 'Название', author: 'Исполнитель', id: 2 },
     { title: 'Название', author: 'Исполнитель', id: 3 },
-
 ];
 
 json.forEach((a) => {

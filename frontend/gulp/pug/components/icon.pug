@@ -1,15 +1,15 @@
 mixin ico(name)
-    span.material-symbols-outlined&attributes(attributes) = name
+    span.material-symbols-outlined&attributes(attributes)= name
 
 mixin bold-ico(name)
-    +ico(name).bold
+    +ico(name).icon__bold
 
 mixin light-ico(name)
-    +ico(name).light
+    +ico(name).icon__light
 
-mixin bold-ico(name)
-    +ico(name).bold
+mixin bold-fill-ico(name)
+    +ico(name).icon__bold-fill
 
-mixin light-ico(name)
-    +ico(name).light
+mixin light-fill-ico(name)
+    +ico(name).icon__light-fill
 

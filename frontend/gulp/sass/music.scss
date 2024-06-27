@@ -1,37 +1,37 @@
 @import 'theme';
 @import 'text';
 
-.main{
-    display: flex;  
+.main {
+    display: flex;
     flex-direction: row;
     background-color: var(--grey);
     justify-content: space-between;
 }
 
-.one{
+.one {
     display: flex;
     flex-direction: row;
 }
 
-.text{
+.text {
     display: flex;
     flex-direction: column;
 }
 
-.iconElement{
+.iconElement {
     display: flex;
     background-color: black;
 }
 
-.material-symbols-outlined{
+.material-symbols-outlined {
     color: white;
-    font-weight: 100;
+    //font-weight: 100;
     width: 5rem;
     height: 5rem;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 
-.image{
+.image {
     background-color: var(--light-grey);
     width: 5rem;
     height: 5rem;
@@ -40,7 +40,7 @@
     margin-top: 0.5rem;
 }
 
-.title{
+.title {
     width: 20rem;
     height: 2.5rem;
     font-size: var(--dev-text1-size);
@@ -51,7 +51,7 @@
     color: var(--white);
 }
 
-.author{
+.author {
     width: 20rem;
     height: 2.5rem;
     font-size: var(--dev-text2-size);
@@ -59,4 +59,3 @@
     margin-left: 1.25rem;
     color: var(--white);
 }
-

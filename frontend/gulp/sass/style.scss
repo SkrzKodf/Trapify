@@ -1,6 +1,7 @@
 @import 'theme';
 @import 'text';
 @import 'music';
+@import 'icon';
 
 html {
     font-size: 16px;
@@ -12,52 +13,52 @@ html {
     padding: 0;
 }
 
-h1{
+h1 {
     @include h1-style;
 }
 
-h2{
+h2 {
     @include h2-style;
 }
 
-h3{
+h3 {
     @include h3-style;
 }
 
-h4{
+h4 {
     @include h4-style;
 }
 
-h5{
+h5 {
     @include h4-style;
     color: var(--white);
 }
 
-a{
-   color: var(--color-text-red);
-   text-decoration: none; 
+a {
+    color: var(--color-text-red);
+    text-decoration: none;
 }
 
-.login-form{
+.login-form {
     background-color: var(--white);
     padding: 1.5rem;
     border-radius: 25px;
     width: 30rem;
 
-    &__header{
+    &__header {
         display: flex;
         justify-content: center;
         align-items: center;
         padding-bottom: 4rem;
     }
 
-    &__labels-text{
+    &__labels-text {
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    &__labels{
+    &__labels {
         margin-left: auto;
         margin-right: auto;
         background-color: var(--color-input);
@@ -72,14 +73,14 @@ a{
         font-size: var(--dev-text3-size);
     }
 
-    &__button{
+    &__button {
         @include text2-style;
-        justify-content: center; 
+        justify-content: center;
         align-items: center;
         margin-left: auto;
         margin-right: auto;
         background-color: var(--color-but-entry);
-        border-radius: 12px; 
+        border-radius: 12px;
         height: 3.75rem;
         width: 26.87rem;
         display: flex;
@@ -88,29 +89,28 @@ a{
         border: none;
     }
 
-    &_button-text{
+    &_button-text {
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    &__registration-text{
+    &__registration-text {
         @include text3-style;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
-
 }
 
-@media (max-width:1600px){
+@media (max-width: 1600px) {
     html {
         font-size: 12px;
     }
 }
 
-@media (max-width: 400px){
+@media (max-width: 400px) {
     html {
         font-size: 8px;
     }
@@ -120,12 +120,12 @@ a{
 
     //     .login-form__header{
     //         padding-bottom: 3.12rem;
-            
+
     //         h1 {
     //             font-size: 2rem;
     //         }
     //     }
-        
+
     //     .login-form__labels{
     //         width: 18rem;
     //         h4 {
