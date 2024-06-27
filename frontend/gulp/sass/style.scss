@@ -26,8 +26,8 @@ header {
     align-items: center;
 
     .ico {
-        font-variation-settings:
-            'opsz' 180;
+        //font-variation-settings:'opsz' 180;
+        font-size: 36px;  //вроде это, но если слишком большие будут, то сделать меньше
     }
 
     .ico-setting {
@@ -81,6 +81,13 @@ header {
     text-align: center;
 }
 
+.playContainer {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 .image {
     background-color: #7E7E7E;
     width: 13rem;
@@ -90,4 +97,21 @@ header {
 
 .name {
     @include h4-style;
+    text-align: center;
+}
+
+.name2 {
+    @include h4-style;
+    text-align: center;
+    padding-left: 1.2rem;
+}
+
+@media (max-width:450px) {
+    .playContainer {
+        display: inline-block;
+    }
+
+    .name2 {
+        padding-left: 0px;
+    }
 }
