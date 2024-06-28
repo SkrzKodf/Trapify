@@ -6,7 +6,6 @@
 
 html {
     font-size: 16px;
-    
 }
 
 * {
@@ -16,7 +15,7 @@ html {
 }
 
 h1 {
-        @include h3-style;
+    @include h3-style;
 }
 
 h2 {
@@ -40,7 +39,6 @@ a {
     color: var(--color-text-red);
     text-decoration: none;
 }
-
 
 @media (max-width: 1600px) {
     html {

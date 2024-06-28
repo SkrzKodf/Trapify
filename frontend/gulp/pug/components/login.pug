@@ -1,21 +1,21 @@
 mixin login()
-    div.login-form
-        div.login-form__header
+    div.form
+        div.form__header
             h1 Войти в Trapefy
         div
             form(action="/entrance", method="post")
                 div
-                    label.login-form__labels-text(for="email") 
+                    label.form__labels-text(for="email") 
                         h4 Почта
-                    input.login-form__labels(type="email", id="email", name="email" required, placeholder='Email')
+                    input.form__labels(type="email", id="email", name="email" required, placeholder='Email')
 
                 div
-                    label.login-form__labels-text(for="password") 
+                    label.form__labels-text(for="password") 
                         h4 Пароль
-                    input.login-form__labels(type="password", id="password", name="password" required, placeholder='Пароль')
-                    button.login-form__button(type="submit")
+                    input.form__labels(type="password", id="password", name="password" required, placeholder='Пароль')
+                    button.form__button(type="submit")
                         h5 Войти
-            div.login-form__registration-text
+            div.form__registration-text
                 p Еще нет аккаунта?
                 a#showReg(href='#') Регистрация
                 //- javascript:void(0);
