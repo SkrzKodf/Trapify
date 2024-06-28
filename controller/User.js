@@ -67,9 +67,9 @@ UserRouter.post("/reg", multer().single('picture'), async (req, res) => {
     const host = process.env.HOST;
     const port = process.env.PORT;
     const emailToken = jwt.sign({
-        user_name: JSON.stringify(req.body.user_name),
-        user_email: JSON.stringify(req.body.user_email).toLowerCase(),
-        user_password: JSON.stringify(req.body.user_password),
+        user_name: (req.body.user_name),
+        user_email: (req.body.user_email).toLowerCase(),
+        user_password: (req.body.user_password),
     }, SECRET, { expiresIn: '1h' });
 
     console.log("Токен создан", emailToken)
@@ -143,8 +143,8 @@ UserRouter.post("/enter", async (req, res) => {
     console.log(req.body)
     let user = await UserInfo.findAll({
         where: {
-            user_email: JSON.stringify(req.body.user_email).toLowerCase(),
-            user_password: JSON.stringify(req.body.user_password),
+            user_email: (req.body.user_email).toLowerCase(),
+            user_password: (req.body.user_password),
         }
     })
     if (user && user[0]) {

@@ -38,12 +38,12 @@ MusicRouter.post("/get_music", multer().single("music"), async (req, res) => {
     })
 
     if (blob && blob[0]) {
-        let music_file = JSON.stringify({
+        let music_file = {
             music_name: (blob[0].music_name),
             music_author: (blob[0].music_author),
             music_picture: blob[0].music_picture,
             music_file: blob[0].music_file
-        })
+        }
         res.send({ music: music_file });
     } else {
         res.send({ stat: 404, info: "Такой песни не существует" });
@@ -81,14 +81,14 @@ MusicRouter.get("/get_all_music", async (req, res) => {
 MusicRouter.post("/create_playlist", musicup, async (req, res) => {
     try {
         if (!req.body) return res.sendStatus(400);
-        if (!req.body.playlist_name) return res.sendStatus(400);       
+        if (!req.body.playlist_name) return res.sendStatus(400);
         if (!req.file && !req.files['picture'][0]) return res.sendStatus(400);
 
         res.send({ stat: 200 });
         console.log(req.body);
 
         await PlayList.create({
-            playlist_name: JSON.stringify(req.body.playlist_name),
+            playlist_name: (req.body.playlist_name),
             playlist_pic: JSON.stringify(req.files['picture'][0]),
         });
     } catch {
@@ -125,4 +125,45 @@ MusicRouter.post("/add_song_in_playlist", async (req, res) => {
         res.send({ stat: 418, info: "Запрос некорректный" });
     }
 
+})
+
+MusicRouter.post("/delete_song", async (req, res) => {
+    try {
+        if (!req.body) return res.sendStatus(400);
+
+        await Music.destroy({
+            where: {
+                music_id: JSON.stringify(req.body.music_id)
+            }
+        })
+
+        res.send({ stat: 200, info: "Песня удаленна" })
+    } catch {
+        res.send({ stat: 418, info: "Запрос некорректный" });
+    }
+})
+
+MusicRouter.post("/update_music", musicup, async (req, res) => {
+    try {
+        if (!req.body) return res.sendStatus(400);
+
+        await Music.update(
+            {
+                music_author: (req.body.music_author),
+                music_name: (req.body.music_name),
+                music_picture: JSON.stringify(req.files['picture'][0]),
+                music_file: JSON.stringify(req.files['music'][0])
+            },
+            {
+                where: {
+                    music_id: req.body.music_id
+                }
+            }
+        )
+
+        res.send({ stat: 200, info: "Обновление выполнено" });
+
+    } catch {
+        res.send({ stat: 418, info: "Запрос некорректный" });
+    }
 })

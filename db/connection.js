@@ -33,6 +33,19 @@ export const UserInfo = sequelize.define('userinfo', {
 }, { freezeTableName: true, timestamps: false });
 UserInfo.sync({ force: false })
 
+export const Music = sequelize.define('music', {
+    music_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    music_name: DataTypes.STRING(255),
+    music_author: DataTypes.STRING(255),
+    music_file: DataTypes.BLOB,
+    music_picture: DataTypes.BLOB,
+}, { freezeTableName: true, timestamps: false, onDelete: 'cascade', hooks: true });
+Music.sync({ force: false })
+
 export const FavoriteTracks = sequelize.define('favoritetracks', {
     favoritetracks_id: {
         type: DataTypes.INTEGER,
@@ -41,7 +54,7 @@ export const FavoriteTracks = sequelize.define('favoritetracks', {
     },
     user_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: {
             model: 'userinfo',
             key: 'user_id',
@@ -56,20 +69,7 @@ export const FavoriteTracks = sequelize.define('favoritetracks', {
         }
     },
 }, { freezeTableName: true, timestamps: false });
-FavoriteTracks.sync({ force: false })
-
-export const Music = sequelize.define('music', {
-    music_id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-    },
-    music_name: DataTypes.STRING(255),
-    music_author: DataTypes.STRING(255),
-    music_file: DataTypes.BLOB,
-    music_picture: DataTypes.BLOB,
-}, { freezeTableName: true, timestamps: false });
-Music.sync({ force: false })
+FavoriteTracks.sync({ force: true })
 
 export const PlayList = sequelize.define('playlist', {
     playlist_id: {
@@ -106,5 +106,3 @@ export const PlayListMusic = sequelize.define('playlistmusic', {
     }
 }, { freezeTableName: true, timestamps: false });
 PlayListMusic.sync({ force: false })
-
-
