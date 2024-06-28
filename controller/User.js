@@ -150,7 +150,14 @@ UserRouter.post("/enter", async (req, res) => {
     if (user && user[0]) {
         req.session.user_id = user[0].user_id;
         console.log(req.session.user_id);
-        res.send({ stat: 1, user: user[0] });
+        res.send({
+            stat: 1, user: {
+                user_id: (user[0].user_name),
+                user_name: (user[0].user_name),
+                user_email: (user[0].user_email).toLowerCase(),
+                user_picture: (user[0].user_picture),
+            }
+        });
         console.log(user[0])
     } else {
         res.send({ stat: 400, info: "Пользователь не найден" });
@@ -159,11 +166,11 @@ UserRouter.post("/enter", async (req, res) => {
 
 UserRouter.post("/like_music", async (req, res) => {
     try {
-        if (!req.body) return res.sendStatus(400);
+        if (!req.body && !req.session.user_id) return res.sendStatus(400);
         console.log(JSON.stringify(req.body))
         const find_like = await FavoriteTracks.findOne({
             where: {
-                user_id: JSON.stringify(req.body.user_id),
+                user_id: req.session.user_id,
                 music_id: JSON.stringify(req.body.music_id),
             }
         })
@@ -171,14 +178,14 @@ UserRouter.post("/like_music", async (req, res) => {
         if (find_like) {
             await FavoriteTracks.destroy({
                 where: {
-                    user_id: JSON.stringify(req.body.user_id),
+                    user_id: req.session.user_id,
                     music_id: JSON.stringify(req.body.music_id),
                 }
             })
             res.send({ stat: 200, info: "Лайк убран" });
         } else {
             await FavoriteTracks.create({
-                user_id: JSON.stringify(req.body.user_id),
+                user_id: req.session.user_id,
                 music_id: JSON.stringify(req.body.music_id),
             })
             res.send({ stat: 200, info: "Лайк поставлен" });
@@ -202,4 +209,12 @@ UserRouter.post("/get_likes_music", async (req, res) => {
     } else {
         res.send({ stat: 400 });
     }
+})
+
+UserRouter.post("/enter_admin", async (req, res) => {
+    if (!req.body) return res.sendStatus(400);
+    console.log(req.body)
+    req.session.admin_session = true;
+    console.log(req.session.admin_session);
+    res.send({ stat: 200, info: "Сессия админа создана" });
 })

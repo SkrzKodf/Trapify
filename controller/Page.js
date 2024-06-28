@@ -22,7 +22,6 @@ export const PageRouter = Router();
                     console.error(err);
                 }
             } else {
-                console.log("Вы пидорас")
                 res.redirect("/registration")
             }
 

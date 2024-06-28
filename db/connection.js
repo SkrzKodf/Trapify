@@ -11,6 +11,7 @@ const sequelize = new Sequelize('MusicDB', 'postgres', 'admin', {
         idle: 10000
     }
 })
+sequelize.sync({ force: false })
 
 try {
     await sequelize.authenticate()
@@ -43,11 +44,12 @@ export const Music = sequelize.define('music', {
     music_author: DataTypes.STRING(255),
     music_file: DataTypes.BLOB,
     music_picture: DataTypes.BLOB,
-}, { freezeTableName: true, timestamps: false, onDelete: 'cascade', hooks: true });
+}, { freezeTableName: true, timestamps: false, onDelete: 'CASCADE', hook: true });
 Music.sync({ force: false })
 
 export const FavoriteTracks = sequelize.define('favoritetracks', {
     favoritetracks_id: {
+        onDelete: 'CASCADE',
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -55,6 +57,7 @@ export const FavoriteTracks = sequelize.define('favoritetracks', {
     user_id: {
         type: DataTypes.INTEGER,
         allowNull: true,
+        onDelete: 'CASCADE',
         references: {
             model: 'userinfo',
             key: 'user_id',
@@ -63,13 +66,14 @@ export const FavoriteTracks = sequelize.define('favoritetracks', {
     music_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        onDelete: 'CASCADE',
         references: {
             model: 'music',
             key: 'music_id',
         }
     },
-}, { freezeTableName: true, timestamps: false });
-FavoriteTracks.sync({ force: true })
+}, { freezeTableName: true, timestamps: false, onDelete: 'CASCADE', hook: true });
+FavoriteTracks.sync({ force: false })
 
 export const PlayList = sequelize.define('playlist', {
     playlist_id: {
@@ -77,18 +81,24 @@ export const PlayList = sequelize.define('playlist', {
         primaryKey: true,
         autoIncrement: true,
     },
-    playlist_name: DataTypes.STRING(255),
-    playlist_pic: DataTypes.BLOB,
-}, { freezeTableName: true, timestamps: false });
+    playlist_name: {
+        type: DataTypes.STRING(255)
+    },
+    playlist_pic: {
+        type: DataTypes.BLOB
+    },
+}, { freezeTableName: true, timestamps: false, onDelete: 'CASCADE', hook: true });
 PlayList.sync({ force: false })
 
 export const PlayListMusic = sequelize.define('playlistmusic', {
     playlist_music_id: {
+        onDelete: 'CASCADE',
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
     playlist_id_mus: {
+        onDelete: 'CASCADE',
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
@@ -97,6 +107,7 @@ export const PlayListMusic = sequelize.define('playlistmusic', {
         }
     },
     music_id: {
+        onDelete: 'CASCADE',
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
