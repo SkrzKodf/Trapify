@@ -117,3 +117,4 @@ export const PlayListMusic = sequelize.define('playlistmusic', {
     }
 }, { freezeTableName: true, timestamps: false });
 PlayListMusic.sync({ force: false })
+
