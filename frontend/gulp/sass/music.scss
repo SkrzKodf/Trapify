@@ -4,7 +4,12 @@
 
 .main {
     flex-direction: row;
-    background: linear-gradient(to bottom, var(--black), var(--light-grey));
+    background: linear-gradient(
+        to bottom,
+        var(--black),
+        70%,
+        var(--light-grey)
+    );
 }
 
 //ПЛЕЙЛИСТ
@@ -12,6 +17,13 @@
     display: flex;
     flex-direction: row;
     margin-bottom: 3rem;
+    justify-content: center;
+
+    @media (max-width: 400px) {
+        flex-direction: column;
+        align-content: center;
+        flex-wrap: wrap;
+    }
 }
 
 .playlist__image {
@@ -19,15 +31,22 @@
     width: 18.75rem;
     height: 18.75rem;
     border-radius: 8px;
-    margin-left: 25rem;
     margin-top: 2rem;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @media (max-width: 400px) {
+        width: 12.5rem;
+        height: 12.5rem;
+    }
 }
 
 .playlist__title {
     width: 30rem;
     height: 2.5rem;
-    font-family: var(--dev-h2-font);
-    font-size: var(--dev-h2-size);
+    @include h1-style;
     font-weight: 700;
     margin-left: 1.25rem;
     margin-top: 5rem;
@@ -38,13 +57,10 @@
 .playlist__author {
     width: 20rem;
     height: 2.5rem;
-    font-family: var(--dev-h3-font);
-    font-size: var(--dev-h3-size);
+    @include h2-style;
     margin-left: 1.25rem;
     color: var(--white);
 }
-
-
 
 //ПЕСНИ НАХУЙ
 .song__info {
@@ -52,18 +68,18 @@
     flex-direction: column;
 }
 
-.song{
+.song {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.song__img-info{
+.song__img-info {
     display: flex;
     flex-direction: row;
 }
 
-.song__image{
+.song__image {
     background-color: var(--light-grey);
     width: 4.37rem;
     height: 4.37rem;
@@ -72,42 +88,37 @@
     margin-top: 0.5rem;
 }
 
-.song__title{
+.song__title {
     width: 20rem;
     height: 2.5rem;
-    font-size: var(--dev-text1-size);
-    font-family: var(--dev-text1-font);
+    @include text1-style;
     font-weight: 700;
     margin-left: 1.25rem;
     margin-top: 0.8rem;
     color: var(--white);
 }
 
-.song__author{
+.song__author {
     width: 20rem;
     height: 2.5rem;
-    font-size: var(--dev-text2-size);
-    font-family: var(--dev-text2-font);
+    @include text2-style;
     margin-left: 1.25rem;
     color: var(--white);
 }
 
-.song__favorite{
+.song__favorite {
     flex-direction: row;
-
 }
 
-
-
 //ПЛЕЙЕР
-.player{
-    background-color: rgba(black, 0.5);
+.player {
+    background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.player__image{
+.player__image {
     background-color: var(--light-grey);
     width: 7.8rem;
     height: 7.8rem;
@@ -117,32 +128,33 @@
     margin-bottom: 1rem;
 }
 
-.player__nameplay{
+.player__nameplay {
     display: flex;
     flex-direction: row;
+
+    @media (max-width: 400px) {
+        flex-direction: column;
+    }
 }
 
-.player__info{
+.player__info {
     display: flex;
-    flex-direction: column; 
-    
+    flex-direction: column;
 }
 
-.player__controls{
+.player__controls {
     display: flex;
-    flex-direction: row; 
+    flex-direction: row;
     justify-content: center;
-    margin-top: 2.5rem;
+    margin-top: 0.5rem;
 }
 
-.player__icons{
+.player__icons {
     display: flex;
-    flex-direction: row; 
-    margin-top: 2.5rem;
+    flex-direction: row;
+    margin-top: 0.7rem;
 }
-
 
 .material-symbols-outlined {
     color: white;
-
 }

@@ -167,7 +167,7 @@ class DevPlayer extends HTMLElement {
                     </div>
                     <div class="player__icon repeat" type="repeat">
                         <span class="material-symbols-outlined icon__light">repeat</span>
-                    </div>   
+                    </div>  
                     <div class="player__icon" type="valume">
                         <span class="material-symbols-outlined icon__light">volume_up</span>
                     </div>  
