@@ -1,0 +1,83 @@
+@import 'theme';
+@import 'text';
+
+
+.DevSong{
+
+}
+
+.block {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--grey);
+    justify-content: space-between;
+    margin-top: 15rem;
+}
+
+.baseblock {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.notbaseblock{
+    justify-content: space-between;
+    margin-right: 2rem;
+}
+
+.namepic {
+    display: flex;
+    flex-direction: row;
+}
+
+.textblock {
+    display: flex;
+    flex-direction: column;
+}
+
+.soundelement {
+    display: flex;
+    background-color: black;
+}
+
+.playsong {
+    display: flex;
+    flex-direction: row;
+}
+
+.material-symbols-outlined {
+    color: white;
+    font-weight: 100;
+    width: 5rem;
+    height: 5rem;
+    margin-top: 1.5rem;
+}
+
+.material-symbols-outlined_pauseelement {
+    color: white;
+    font-weight: 100;
+    width: 5rem;
+    height: 5rem;
+    margin-top: 1.5rem;
+    margin-right: 3rem;
+}
+
+.title {
+    width: 15rem;
+    height: 2.5rem;
+    font-size: var(--dev-text1-size);
+    font-family: var(--dev-text1-font);
+    font-weight: 700;
+    margin-left: 1.25rem;
+    margin-top: 0.8rem;
+    color: var(--white);
+}
+
+.author {
+    width: 15rem;
+    height: 2.5rem;
+    font-size: var(--dev-text2-size);
+    font-family: var(--dev-text2-font);
+    margin-left: 1.25rem;
+    color: var(--white);
+}

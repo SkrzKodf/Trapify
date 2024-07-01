@@ -1,46 +1,78 @@
 @import 'theme';
 @import 'text';
+@import 'icon';
 
 .main {
-    display: flex;
     flex-direction: row;
-    background-color: var(--grey);
-    justify-content: space-between;
+    background: linear-gradient(to bottom, var(--black), var(--light-grey));
 }
 
-.one {
+//ПЛЕЙЛИСТ
+.playlist__header {
     display: flex;
     flex-direction: row;
+    margin-bottom: 3rem;
 }
 
-.text {
+.playlist__image {
+    background-color: var(--light-grey);
+    width: 18.75rem;
+    height: 18.75rem;
+    border-radius: 8px;
+    margin-left: 25rem;
+    margin-top: 2rem;
+}
+
+.playlist__title {
+    width: 30rem;
+    height: 2.5rem;
+    font-family: var(--dev-h2-font);
+    font-size: var(--dev-h2-size);
+    font-weight: 700;
+    margin-left: 1.25rem;
+    margin-top: 5rem;
+    margin-bottom: 0.8rem;
+    color: var(--white);
+}
+
+.playlist__author {
+    width: 20rem;
+    height: 2.5rem;
+    font-family: var(--dev-h3-font);
+    font-size: var(--dev-h3-size);
+    margin-left: 1.25rem;
+    color: var(--white);
+}
+
+
+
+//ПЕСНИ НАХУЙ
+.song__info {
     display: flex;
     flex-direction: column;
 }
 
-.iconElement {
+.song{
     display: flex;
-    background-color: black;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-.material-symbols-outlined {
-    color: white;
-    //font-weight: 100;
-    width: 5rem;
-    height: 5rem;
-    margin-top: 1.5rem;
+.song__img-info{
+    display: flex;
+    flex-direction: row;
 }
 
-.image {
+.song__image{
     background-color: var(--light-grey);
-    width: 5rem;
-    height: 5rem;
+    width: 4.37rem;
+    height: 4.37rem;
     border-radius: 8px;
-    margin-left: 1rem;
+    margin-left: 3rem;
     margin-top: 0.5rem;
 }
 
-.title {
+.song__title{
     width: 20rem;
     height: 2.5rem;
     font-size: var(--dev-text1-size);
@@ -51,11 +83,66 @@
     color: var(--white);
 }
 
-.author {
+.song__author{
     width: 20rem;
     height: 2.5rem;
     font-size: var(--dev-text2-size);
     font-family: var(--dev-text2-font);
     margin-left: 1.25rem;
     color: var(--white);
+}
+
+.song__favorite{
+    flex-direction: row;
+
+}
+
+
+
+//ПЛЕЙЕР
+.player{
+    background-color: rgba(black, 0.5);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.player__image{
+    background-color: var(--light-grey);
+    width: 7.8rem;
+    height: 7.8rem;
+    border-radius: 8px;
+    margin-left: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.player__nameplay{
+    display: flex;
+    flex-direction: row;
+}
+
+.player__info{
+    display: flex;
+    flex-direction: column; 
+    
+}
+
+.player__controls{
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+    margin-top: 2.5rem;
+}
+
+.player__icons{
+    display: flex;
+    flex-direction: row; 
+    margin-top: 2.5rem;
+}
+
+
+.material-symbols-outlined {
+    color: white;
+
 }

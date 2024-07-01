@@ -1,7 +1,7 @@
 .icon {
     &__bold {
         font-variation-settings:
-            'fill' 0,
+            'FILL' 0,
             'wght' 600,
             'grad' 0,
             'opsz' 24;
@@ -9,7 +9,7 @@
 
     &__light {
         font-variation-settings:
-            'fill' 0,
+            'FILL' 0,
             'wght' 100,
             'grad' 0,
             'opsz' 48;
@@ -17,7 +17,7 @@
 
     &__light-fill {
         font-variation-settings:
-            'fill' 1,
+            'FILL' 1,
             'wght' 100,
             'grad' 0,
             'opsz' 48;
@@ -25,7 +25,7 @@
 
     &__bold-fill {
         font-variation-settings:
-            'fill' 1,
+            'FILL' 1,
             'wght' 600,
             'grad' 0,
             'opsz' 48;
@@ -35,19 +35,19 @@
 @media (max-width: 1600px) {
     .icon {
         &__bold {
-            font-size: 36px;
+            font-size: 48px;
         }
 
         &__light {
-            font-size: 36px;
+            font-size: 48px;
         }
 
         &__light-fill {
-            font-size: 36px;
+            font-size: 48px;
         }
 
         &__bold-fill {
-            font-size: 36px;
+            font-size: 48px;
         }
     }
 }
