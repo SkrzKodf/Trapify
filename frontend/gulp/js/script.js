@@ -45,6 +45,7 @@ class Playlist extends HTMLElement {
 
         document.body.appendChild(elem);
         document.body.appendChild(elem2);
+
     }
 }
 
@@ -59,3 +60,17 @@ const json = [
 json.forEach((a) => {
     elemCreator.createElem({ playName: a.playName, playID: a.playID });
 });
+
+
+
+
+
+// let audio = new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3");
+// volume.addEventListener("input", (e) => {
+//     audio.volume = e.currentTarget.value / 100;
+// });
+// play.addEventListener("click", (e) => {
+//     return audio.paused ? audio.play() : audio.pause();
+// });
+
+

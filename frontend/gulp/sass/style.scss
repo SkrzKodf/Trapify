@@ -1,6 +1,5 @@
 @import 'theme';
 @import 'text';
-@import 'theme';
 
 html {
     font-size: 16px;
@@ -16,7 +15,6 @@ h1 {
     @include h1-style;
 }
 
-
 header {
     background-color: var(--black);
     width: 100%;
@@ -25,35 +23,28 @@ header {
     justify-content: space-between;
     align-items: center;
 
-    .ico {
-        //font-variation-settings:'opsz' 180;
-        font-size: 36px;  //вроде это, но если слишком большие будут, то сделать меньше
-    }
-
-    .ico-setting {
-        cursor: pointer;
-        color: var(--white);
-    }
-
     .upmenu__home {
         @include h3-style;
-        text-align: left;
         text-decoration: none;
         color: var(--white);
     }
 
     .upmenu__like {
         @include h3-style;
-        text-align: center;
         text-decoration: none;
         color: var(--white);
     }
 
     .upmenu__search {
         @include h3-style;
-        text-align: right;
         text-decoration: none;
         color: var(--white);
+    }
+
+    .material-symbols-outlined {
+        cursor: pointer;
+        color: var(--white);
+        font-size: 28px;
     }
 }
 
@@ -66,7 +57,7 @@ header {
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 550px) {
 
     .upmenu__home,
     .upmenu__like,
@@ -81,13 +72,6 @@ header {
     text-align: center;
 }
 
-.playContainer {
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
 .image {
     background-color: #7E7E7E;
     width: 13rem;
@@ -100,13 +84,20 @@ header {
     text-align: center;
 }
 
+.playContainer {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 .name2 {
     @include h4-style;
     text-align: center;
     padding-left: 1.2rem;
 }
 
-@media (max-width:450px) {
+@media (max-width:550px) {
     .playContainer {
         display: inline-block;
     }
@@ -115,3 +106,19 @@ header {
         padding-left: 0px;
     }
 }
+
+// #volume {
+//     display: flex;
+//     justify-content: flex-end;
+//     margin-top: 50px;
+//     width: 100px;
+//     rotate: 270deg;
+//     //цвет??
+// }
+
+// #play {
+//     display: flex;
+//     justify-content: flex-end;
+//     margin-top: 50px;
+//     background-color: aquamarine;
+// }
