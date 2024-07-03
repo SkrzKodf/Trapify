@@ -1,4 +1,4 @@
-class DevSong extends HTMLElement {
+/*class DevSong extends HTMLElement {
     constructor({ title, author, id } = {}) {
         super();
         this.title = title;
@@ -162,12 +162,10 @@ class DevPlayer extends HTMLElement {
                     </div>
                 </div>
                 <div class="player__icons">
-                    <div class="player__icon favorite" type="favorite">
-                        <span class="material-symbols-outlined icon__light">favorite</span>
-                    </div>
-                    <div class="player__icon repeat" type="repeat">
-                        <span class="material-symbols-outlined icon__light">repeat</span>
-                    </div>  
+                    <div class="player__icon favorite repeat" type="favorite-repeat"> 
+                        <span class="material-symbols-outlined icon__light">favorite</span> 
+                        <span class="material-symbols-outlined icon__light">repeat</span> 
+                    </div>   
                     <div class="player__icon" type="valume">
                         <span class="material-symbols-outlined icon__light">volume_up</span>
                     </div>  
@@ -206,7 +204,8 @@ customElements.define('dev-playlist', DevPlayList);
 customElements.define('dev-song', DevSong);
 customElements.define('dev-player', DevPlayer);
 
-const player = document.querySelector('dev-player');
+const player = new DevPlayer();
+player.start({ title: 'Название песни', author: 'Исполнитель', id: '123' });
 
 const playlist = new DevPlayList({
     title: 'Название плейлиста',
@@ -222,4 +221,236 @@ const playlist = new DevPlayList({
     author: 'Автор плейлиста',
 });
 
-document.body.querySelector('.main').appendChild(playlist);
+document.body.querySelector('.main').appendChild(playlist);*/
+
+class DevSlider extends HTMLElement {
+    constructor({ title, author, id } = {}) {
+        super();
+        this.title = title;
+        this.author = author;
+        this.id = id;
+    }
+
+    connectedCallback() {
+        if (!this.title) {
+            this.title = this.getAttribute('title');
+        }
+
+        if (!this.author) {
+            this.author = this.getAttribute('author');
+        }
+
+        if (!this.id) {
+            this.id = this.getAttribute('id');
+        }
+
+        this.render();
+    }
+
+    render() {
+        this.innerHTML = `
+            <div class="slider">
+                <div class="slider__name">Мои плейлисты
+                </div>
+                <div class="playlist-slider__block">
+                    <button class="prevButton"><strong><</strong></button>
+                    <div class="playlist-slider">
+                        <div class="playlist-slider__image">
+                            <img src=""/>
+                        </div>
+                        <div class="playlist-slider__info">
+                            <div class="playlist-slider__title">${this.title}</div>
+                            <div class="playlist-slider__author">${this.author}</div>     
+                        </div>
+                    </div>
+
+                    <div class="playlist-slider">
+                        <div class="playlist-slider__image">
+                            <img src=""/>
+                        </div>
+                        <div class="playlist-slider__info">
+                            <div class="playlist-slider__title">${this.title}</div>
+                            <div class="playlist-slider__author">${this.author}</div>     
+                        </div>
+                    </div>
+
+                    <div class="playlist-slider">
+                        <div class="playlist-slider__image">
+                            <img src=""/>
+                        </div>
+                        <div class="playlist-slider__info">
+                            <div class="playlist-slider__title">${this.title}</div>
+                            <div class="playlist-slider__author">${this.author}</div>     
+                        </div>
+                    </div>
+                    <div class="playlist-slider">
+                        <div class="playlist-slider__image">
+                            <img src=""/>
+                        </div>
+                        <div class="playlist-slider__info">
+                            <div class="playlist-slider__title">${this.title}</div>
+                            <div class="playlist-slider__author">${this.author}</div>     
+                        </div>
+                    </div>        
+                    <div class="playlist-slider">
+                        <div class="playlist-slider__image">
+                            <img src=""/>
+                        </div>
+                        <div class="playlist-slider__info">
+                            <div class="playlist-slider__title">${this.title}</div>
+                            <div class="playlist-slider__author">${this.author}</div>     
+                        </div>
+                    </div>
+                    <button class="nextButton"><strong>></strong></button>   
+                </div>  
+
+
+                <div class="slider__name">Чарты
+                </div>
+                <div class="chart-slider__block">
+                    <button class="prevButton"><strong><</strong></button>
+                    <div class="chart-slider">
+                        <div class="chart-slider__image">
+                            <img src=""/>
+                        </div>
+                        <div class="chart-slider__info">
+                            <div class="chart-slider__title">${this.title}</div>
+                            <div class="chart-slider__author">${this.author}</div>     
+                        </div>
+                    </div>
+
+                    <div class="chart-slider">
+                        <div class="chart-slider__image">
+                            <img src=""/>
+                        </div>
+                        <div class="chart-slider__info">
+                            <div class="chart-slider__title">${this.title}</div>
+                            <div class="chart-slider__author">${this.author}</div>     
+                        </div>
+                    </div>
+
+                    <div class="chart-slider">
+                        <div class="chart-slider__image">
+                            <img src=""/>
+                        </div>
+                        <div class="chart-slider__info">
+                            <div class="chart-slider__title">${this.title}</div>
+                            <div class="chart-slider__author">${this.author}</div>     
+                        </div>
+                    </div>
+                    <div class="chart-slider">
+                        <div class="chart-slider__image">
+                            <img src=""/>
+                        </div>
+                        <div class="chart-slider__info">
+                            <div class="chart-slider__title">${this.title}</div>
+                            <div class="chart-slider__author">${this.author}</div>     
+                        </div>
+                    </div>        
+                    <div class="chart-slider">
+                        <div class="chart-slider__image">
+                            <img src=""/>
+                        </div>
+                        <div class="chart-slider__info">
+                            <div class="chart-slider__title">${this.title}</div>
+                            <div class="chart-slider__author">${this.author}</div>     
+                        </div>
+                    </div>
+                    <button class="nextButton"><strong>></strong></button>   
+                </div>  
+            </div> 
+            <div class="slider__body"></div>   
+        `;
+    }
+}
+
+////Мой плейлист
+customElements.define('dev-slider', DevSlider);
+
+const slider = new DevSlider();
+document.body.appendChild(slider);
+
+const playlists = Array.from(slider.querySelectorAll('.playlist-slider'));
+const prevPlaylist = slider.querySelector('.prevButton');
+const nextPlaylist = slider.querySelector('.nextButton');
+let currentPlaylistIndex = 0;
+
+function showPlaylistSlides() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 1000) {
+        playlists.forEach((playlist, index) => {
+            if (index === currentPlaylistIndex) {
+                playlist.style.display = 'flex';
+            } else {
+                playlist.style.display = 'none';
+            }
+        });
+    } else {
+        playlists.forEach((playlist, index) => {
+            if (index >= currentPlaylistIndex && index < currentPlaylistIndex + 3) {
+                playlist.style.display = 'flex';
+            } else {
+                playlist.style.display = 'none';
+            }
+        });
+    }
+}
+
+prevPlaylist.addEventListener('click', () => {
+    if (currentPlaylistIndex > 0) {
+        currentPlaylistIndex -= 1;
+        showPlaylistSlides();
+    }
+});
+
+nextPlaylist.addEventListener('click', () => {
+    if (currentPlaylistIndex < playlists.length - 1) {
+        currentPlaylistIndex += 1;
+        showPlaylistSlides();
+    }
+});
+
+showPlaylistSlides();
+
+/////Чарты
+const charts = Array.from(slider.querySelectorAll('.chart-slider'));
+const prevChart = slider.querySelector('.prevButton');
+const nextChart = slider.querySelector('.nextButton');
+let currentChartIndex = 0;
+
+function showChartSlides() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 1000) {
+        charts.forEach((chart, index) => {
+            if (index === currentChartIndex) {
+                chart.style.display = 'flex';
+            } else {
+                chart.style.display = 'none';
+            }
+        });
+    } else {
+        charts.forEach((chart, index) => {
+            if (index >= currentPlaylistIndex && index < currentChartIndex + 3) {
+                chart.style.display = 'flex';
+            } else {
+                chart.style.display = 'none';
+            }
+        });
+    }
+}
+
+prevChart.addEventListener('click', () => {
+    if (currentChartIndex > 0) {
+        currentChartIndex -= 1;
+        showChartSlides();
+    }
+});
+
+nextChart.addEventListener('click', () => {
+    if (currentChartIndex < charts.length - 3) {
+        currentChartIndex += 1;
+        showChartSlides();
+    }
+});
+
+showChartSlides();

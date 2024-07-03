@@ -21,8 +21,7 @@
 
     @media (max-width: 400px) {
         flex-direction: column;
-        align-content: center;
-        flex-wrap: wrap;
+        align-items: center;
     }
 }
 
@@ -33,14 +32,17 @@
     border-radius: 8px;
     margin-top: 2rem;
     display: flex;
-    align-content: center;
-    flex-wrap: wrap;
     justify-content: center;
 
     @media (max-width: 400px) {
-        width: 12.5rem;
-        height: 12.5rem;
+        width: 15.62rem;
+        height: 15.62rem;
+        order: 2;
     }
+}
+
+.playlist__info {
+    order: 1;
 }
 
 .playlist__title {
@@ -52,6 +54,12 @@
     margin-top: 5rem;
     margin-bottom: 0.8rem;
     color: var(--white);
+    justify-content: center;
+
+    @media (max-width: 400px) {
+        margin-top: 1rem;
+        margin-left: 0rem;
+    }
 }
 
 .playlist__author {
@@ -60,6 +68,15 @@
     @include h2-style;
     margin-left: 1.25rem;
     color: var(--white);
+    display: flex;
+    justify-content: center;
+
+    @media (max-width: 400px) {
+        text-align: 0 auto;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+    }
 }
 
 //ПЕСНИ НАХУЙ
@@ -153,8 +170,200 @@
     display: flex;
     flex-direction: row;
     margin-top: 0.7rem;
+
+    @media (max-width: 400px) {
+        flex-direction: column;
+        align-items: end;
+    }
+}
+
+.player__icon.favorite.repeat {
+    @media (max-width: 400px) {
+        justify-content: flex-end;
+        order: 2;
+    }
+}
+
+.player__icon {
+    @media (max-width: 400px) {
+        margin-left: auto;
+        order: 1;
+    }
+}
+
+.player__title {
+    width: 20rem;
+    height: 2.5rem;
+    @include text1-style;
+    font-weight: 700;
+    margin-left: 1.25rem;
+    margin-top: 0.8rem;
+    color: var(--white);
+}
+
+.player__author {
+    width: 20rem;
+    height: 2.5rem;
+    @include text2-style;
+    margin-left: 1.25rem;
+    color: var(--white);
 }
 
 .material-symbols-outlined {
     color: white;
+    font-weight: 100;
+    width: 5rem;
+    height: 5rem;
+    margin-top: 1.5rem;
+
+    @media (max-width: 400px) {
+        margin-top: 0rem;
+    }
 }
+
+//слайдер
+
+.slider {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(
+        to bottom,
+        var(--black),
+        85%,
+        var(--light-grey)
+    );
+}
+
+.slider__name {
+    @include h1-style;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+    color: var(--white);
+    justify-content: center;
+}
+
+.playlist-slider__info {
+    display: flex;
+    flex-direction: column;
+}
+
+.playlist-slider__title {
+    width: 20rem;
+    height: 2.5rem;
+    @include text2-style;
+
+    margin-top: 0.8rem;
+    color: var(--white);
+    text-align: center;
+}
+
+.playlist-slider__author {
+    width: 20rem;
+    height: 2.5rem;
+    @include text2-style;
+    color: var(--white);
+    text-align: center;
+}
+
+.playlist-slider__image {
+    background-color: var(--light-grey);
+    width: 14rem;
+    height: 14rem;
+    border-radius: 20px;
+    margin-left: 3rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+
+    @media (max-width: 400px) {
+        width: 12.5rem;
+        height: 12.5rem;
+    }
+}
+
+.playlist-slider__block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.playlist-slider {
+    display: flex;
+    flex-direction: column;
+}
+
+.prevButton {
+    top: 50%;
+    left: 0;
+    width: 2.81rem;
+    height: 2.81rem;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--grey);
+    color: #ffffff;
+    font-weight: 700;
+    @include text1-style;
+    margin-top: 5.62rem;
+}
+
+.nextButton {
+    top: 50%;
+    right: 0;
+    width: 2.81rem;
+    height: 2.81rem;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--grey);
+    color: #ffffff;
+    font-weight: 700;
+    @include text1-style;
+    margin-top: 5.62rem;
+}
+
+///
+
+.chart-slider__info {
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-slider__title {
+    width: 20rem;
+    height: 2.5rem;
+    @include text2-style;
+
+    margin-top: 0.8rem;
+    color: var(--white);
+    text-align: center;
+}
+
+.chart-slider__author {
+    width: 20rem;
+    height: 2.5rem;
+    @include text2-style;
+    color: var(--white);
+    text-align: center;
+}
+
+.chart-slider__image {
+    background-color: var(--light-grey);
+    width: 14rem;
+    height: 14rem;
+    border-radius: 20px;
+    margin-left: 3rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.chart-slider__block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.chart-slider {
+    display: flex;
+    flex-direction: column;
+}
+
