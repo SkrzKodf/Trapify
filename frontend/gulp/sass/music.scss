@@ -133,6 +133,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 100%;
+    height: 100%;
 }
 
 .player__image {
@@ -268,7 +270,7 @@
 }
 
 .playlist-slider__image {
-    background-color: var(--light-grey);
+    //background-color: var(--light-grey);
     width: 14rem;
     height: 14rem;
     border-radius: 20px;
@@ -280,6 +282,13 @@
         width: 12.5rem;
         height: 12.5rem;
     }
+}
+
+.playlist-slider__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
 }
 
 .playlist-slider__block {
@@ -347,13 +356,20 @@
 }
 
 .chart-slider__image {
-    background-color: var(--light-grey);
+    //background-color: var(--light-grey);
     width: 14rem;
     height: 14rem;
     border-radius: 20px;
     margin-left: 3rem;
     margin-top: 0.5rem;
     margin-bottom: 1rem;
+}
+
+.chart-slider__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
 }
 
 .chart-slider__block {
@@ -367,3 +383,43 @@
     flex-direction: column;
 }
 
+.chart-slider__item {
+    opacity: 1;
+    transition: opacity 0.5s ease; /* добавляем плавный переход для свойства opacity */
+  }
+  
+  .hide {
+    opacity: 0;
+  }
+  
+  .show {
+    opacity: 1;
+  }
+
+.prevvButton {
+    top: 50%;
+    left: 0;
+    width: 2.81rem;
+    height: 2.81rem;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--grey);
+    color: #ffffff;
+    font-weight: 700;
+    @include text1-style;
+    margin-top: 5.62rem;
+}
+
+.nexttButton {
+    top: 50%;
+    right: 0;
+    width: 2.81rem;
+    height: 2.81rem;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--grey);
+    color: #ffffff;
+    font-weight: 700;
+    @include text1-style;
+    margin-top: 5.62rem;
+}

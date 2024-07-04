@@ -256,7 +256,7 @@ class DevSlider extends HTMLElement {
                     <button class="prevButton"><strong><</strong></button>
                     <div class="playlist-slider">
                         <div class="playlist-slider__image">
-                            <img src=""/>
+                            <img src="https://i.ytimg.com/vi/F3jZFIvdEvk/maxresdefault.jpg"/>
                         </div>
                         <div class="playlist-slider__info">
                             <div class="playlist-slider__title">${this.title}</div>
@@ -266,7 +266,7 @@ class DevSlider extends HTMLElement {
 
                     <div class="playlist-slider">
                         <div class="playlist-slider__image">
-                            <img src=""/>
+                            <img src="https://lastfm.freetls.fastly.net/i/u/ar0/b510156cc9d77ce76c05f5ad7cab4331.jpg"/>
                         </div>
                         <div class="playlist-slider__info">
                             <div class="playlist-slider__title">${this.title}</div>
@@ -276,7 +276,7 @@ class DevSlider extends HTMLElement {
 
                     <div class="playlist-slider">
                         <div class="playlist-slider__image">
-                            <img src=""/>
+                            <img src="https://kalix.club/uploads/posts/2023-12/thumbs/1703659044_kalix-club-p-pirokinezis-oboi-foni-vkontakte-73.jpg"/>
                         </div>
                         <div class="playlist-slider__info">
                             <div class="playlist-slider__title">${this.title}</div>
@@ -285,7 +285,7 @@ class DevSlider extends HTMLElement {
                     </div>
                     <div class="playlist-slider">
                         <div class="playlist-slider__image">
-                            <img src=""/>
+                            <img src="https://avatars.yandex.net/get-music-content/6201394/dbcb84f9.a.22839664-1/m1000x1000?webp=false"/>
                         </div>
                         <div class="playlist-slider__info">
                             <div class="playlist-slider__title">${this.title}</div>
@@ -294,7 +294,7 @@ class DevSlider extends HTMLElement {
                     </div>        
                     <div class="playlist-slider">
                         <div class="playlist-slider__image">
-                            <img src=""/>
+                            <img src="https://cdn51.zvuk.com/pic?type=release&id=5825412&ext=jpg&size=1920x1920"/>
                         </div>
                         <div class="playlist-slider__info">
                             <div class="playlist-slider__title">${this.title}</div>
@@ -308,10 +308,20 @@ class DevSlider extends HTMLElement {
                 <div class="slider__name">Чарты
                 </div>
                 <div class="chart-slider__block">
-                    <button class="prevButton"><strong><</strong></button>
+                    <button class="prevvButton"><strong><</strong></button>
                     <div class="chart-slider">
                         <div class="chart-slider__image">
-                            <img src=""/>
+                            <img src="https://avatars.yandex.net/get-music-content/4399834/0415f8b8.a.17439837-1/m1000x1000?webp=false"/>
+                        </div>
+                        <div class="chart-slider__info">
+                            <div class="chart-slider__title">${this.title}</div>
+                           <div class="chart-slider__author">${this.author}</div>     
+                        </div>
+                    </div>
+
+                    <div class="chart-slider">
+                        <div class="chart-slider__image">
+                            <img src="https://u.kanobu.ru/editor/images/64/dbfbec53-999c-4037-8d52-030696393308.webp"/>
                         </div>
                         <div class="chart-slider__info">
                             <div class="chart-slider__title">${this.title}</div>
@@ -321,17 +331,7 @@ class DevSlider extends HTMLElement {
 
                     <div class="chart-slider">
                         <div class="chart-slider__image">
-                            <img src=""/>
-                        </div>
-                        <div class="chart-slider__info">
-                            <div class="chart-slider__title">${this.title}</div>
-                            <div class="chart-slider__author">${this.author}</div>     
-                        </div>
-                    </div>
-
-                    <div class="chart-slider">
-                        <div class="chart-slider__image">
-                            <img src=""/>
+                            <img src="https://i.ytimg.com/vi/WlCYaadAIQU/maxresdefault.jpg"/>
                         </div>
                         <div class="chart-slider__info">
                             <div class="chart-slider__title">${this.title}</div>
@@ -340,7 +340,7 @@ class DevSlider extends HTMLElement {
                     </div>
                     <div class="chart-slider">
                         <div class="chart-slider__image">
-                            <img src=""/>
+                            <img src="https://i.pinimg.com/736x/7d/06/f4/7d06f4d90bdd446ee51380760e5816ab.jpg"/>
                         </div>
                         <div class="chart-slider__info">
                             <div class="chart-slider__title">${this.title}</div>
@@ -349,14 +349,14 @@ class DevSlider extends HTMLElement {
                     </div>        
                     <div class="chart-slider">
                         <div class="chart-slider__image">
-                            <img src=""/>
+                            <img src="https://i.pinimg.com/originals/39/fe/7f/39fe7f2c71e4e319979f72cfab11974f.jpg"/>
                         </div>
                         <div class="chart-slider__info">
                             <div class="chart-slider__title">${this.title}</div>
                             <div class="chart-slider__author">${this.author}</div>     
                         </div>
                     </div>
-                    <button class="nextButton"><strong>></strong></button>   
+                    <button class="nexttButton"><strong>></strong></button>   
                 </div>  
             </div> 
             <div class="slider__body"></div>   
@@ -387,7 +387,10 @@ function showPlaylistSlides() {
         });
     } else {
         playlists.forEach((playlist, index) => {
-            if (index >= currentPlaylistIndex && index < currentPlaylistIndex + 3) {
+            if (
+                index >= currentPlaylistIndex &&
+                index < currentPlaylistIndex + 3
+            ) {
                 playlist.style.display = 'flex';
             } else {
                 playlist.style.display = 'none';
@@ -404,7 +407,7 @@ prevPlaylist.addEventListener('click', () => {
 });
 
 nextPlaylist.addEventListener('click', () => {
-    if (currentPlaylistIndex < playlists.length - 1) {
+    if (currentPlaylistIndex < playlists.length - 3) {
         currentPlaylistIndex += 1;
         showPlaylistSlides();
     }
@@ -414,8 +417,8 @@ showPlaylistSlides();
 
 /////Чарты
 const charts = Array.from(slider.querySelectorAll('.chart-slider'));
-const prevChart = slider.querySelector('.prevButton');
-const nextChart = slider.querySelector('.nextButton');
+const prevChart = slider.querySelector('.prevvButton');
+const nextChart = slider.querySelector('.nexttButton');
 let currentChartIndex = 0;
 
 function showChartSlides() {
@@ -430,7 +433,10 @@ function showChartSlides() {
         });
     } else {
         charts.forEach((chart, index) => {
-            if (index >= currentPlaylistIndex && index < currentChartIndex + 3) {
+            if (
+                index >= currentChartIndex &&
+                index < currentChartIndex + 3
+            ) {
                 chart.style.display = 'flex';
             } else {
                 chart.style.display = 'none';
@@ -438,6 +444,7 @@ function showChartSlides() {
         });
     }
 }
+
 
 prevChart.addEventListener('click', () => {
     if (currentChartIndex > 0) {
