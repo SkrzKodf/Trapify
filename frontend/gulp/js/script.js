@@ -192,24 +192,28 @@ class CustomAudioVolumeControl extends HTMLElement {
     constructor() {
         super();
         this.audio = new Audio();
-        this.playButton = document.createElement('button');
+        this.playButton = document.createElement('button'); //старт аудио. заменить потом на иконку??
         this.playButton.textContent = 'да';
+
+        this.toggleVolumeButton = document.createElement('button'); //кнопочку потом заменить на иконку???
+        this.toggleVolumeButton.textContent = '*звук*';
+        this.toggleVolumeButton.style.marginLeft = '1rem';
 
         this.volumeBar = document.createElement('div');
         this.volumeBar.style.width = '10px';
         this.volumeBar.style.height = '150px';
         this.volumeBar.style.backgroundColor = '#2E2C2C';
         this.volumeBar.style.marginLeft = '2rem';
+        this.volumeBar.style.display = 'none';
 
         this.volumeProgress = document.createElement('div');
         this.volumeProgress.style.width = '100%';
         this.volumeProgress.style.backgroundColor = '#e4e4e4';
         this.volumeProgress.style.height = '50%';
 
-
         this.appendChild(this.playButton);
+        this.appendChild(this.toggleVolumeButton);
         this.appendChild(this.volumeBar);
-
         this.volumeBar.appendChild(this.volumeProgress);
     }
 
@@ -225,8 +229,15 @@ class CustomAudioVolumeControl extends HTMLElement {
             }
         });
 
+        this.toggleVolumeButton.addEventListener('click', () => {
+            const isVolumeBarVisible = this.volumeBar.style.display !== 'none';
+            this.volumeBar.style.display = isVolumeBarVisible ? 'none' : 'block';
+            this.toggleVolumeButton.textContent = isVolumeBarVisible ? '*звук*' : '*звук*';
+        });
+
         this.volumeBar.addEventListener('click', this.adjustVolume.bind(this));
     }
+
     adjustVolume(event) {
         const clickY = event.clientY - this.volumeBar.getBoundingClientRect().top;
         const height = this.volumeBar.offsetHeight;
