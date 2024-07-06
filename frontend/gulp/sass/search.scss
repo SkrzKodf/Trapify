@@ -1,0 +1,27 @@
+.search-box {
+    display: none; 
+    position: absolute;
+    margin-top: 100px;
+    right: 20px;
+    border: 1px solid #eb1616;
+    padding: 10px;
+    background-color: rgb(33, 16, 16);
+    z-index: 1000; 
+  }
+  
+  .search-box ul.suggestions {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .search-box ul.suggestions li {
+    padding: 5px 0;
+    border-top: 1px solid #e11f1f;
+    cursor: pointer;
+  }
+  
+  .search-box ul.suggestions li:hover {
+    background-color: #8b0f0f;
+  }
+  
