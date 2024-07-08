@@ -1,18 +1,26 @@
 mixin reg()
-    form.reg_form(action="/register", method="post")
-        div.reg_text 
+    .form
+        .form__header 
             h1 Зарегистрируйтесь и погрузитесь в музыку
-        div.reg_block_input
-            div.reg_input
-                label(for="email") Email
-                input(type="email", id="email", name="email" required, placeholder = "Email")
-            div.reg_input
-                label(for="username") Логин
-                input(type="text", id="username", name="username" required, placeholder = "Логин")
-            div.reg_input
-                label(for="password") Пароль
-                input(type="password", id="password", name="password" required, placeholder = "Пароль")
-        button.reg_but(type="submit") Регистрация
-        div.dop_text
-            p Есть аккаунт?
-            a(href='#') Войти
+        div
+            form(action="/register", method="post")
+                div
+                    label.form__labels-text(for="email") 
+                        h4 Почта
+                    input.form__labels(type="email", id="email", name="email" required, placeholder='Email')
+                div
+                    label.form__labels-text(for="username") 
+                        h4 Логин
+                    input.form__labels(type="username", id="username", name="username" required, placeholder='Логин')
+                div
+                    label.form__labels-text(for="password") 
+                        h4 Пароль
+                    input.form__labels(type="password", id="password", name="password" required, placeholder='Пароль')
+                    button.form__button(type="submit")
+                        h5 Зарегистрироваться
+            div.form__registration-text
+                p Уже есть аккаунт?
+                a#showLogin(href='#') Авторизация
+    <custom-audio-progress-bar src="Bearwolf - Godzilla.mp3"></custom-audio-progress-bar>
+
+

@@ -1,7 +1,7 @@
 @import 'theme';
 @import 'text';
 
-.login-form {
+.form {
     background-color: var(--white);
     padding: 1.5rem;
     border-radius: 25px;
@@ -9,12 +9,18 @@
 
     &__header {
         display: flex;
+        width: 100%;
         justify-content: center;
         align-items: center;
-        padding-bottom: 4rem;
+        padding-bottom: 5%;
+
+        h1 {
+            text-align: center;
+        }
     }
 
     &__labels-text {
+        margin-top: 2%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -27,9 +33,9 @@
         border-radius: 8px;
         display: flex;
         height: 3.125rem;
-        width: 26.87rem;
-        margin-top: 0rem;
-        margin-bottom: 0.93rem;
+        width: 100%;
+        margin-top: 2%;
+        // margin-bottom: 0.93rem;
         padding: 0.62rem;
         border: none;
         font-size: var(--dev-text3-size);
@@ -44,9 +50,9 @@
         background-color: var(--color-but-entry);
         border-radius: 12px;
         height: 3.75rem;
-        width: 26.87rem;
+        width: 100%;
         display: flex;
-        margin-top: 4rem;
+        margin-top: 7%;
         margin-bottom: 0.93rem;
         border: none;
     }
