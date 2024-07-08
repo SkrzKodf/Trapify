@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 document.addEventListener('DOMContentLoaded', function() {
     var header = document.getElementById('headId'); 
-    var headerHeight = header.offsetHeight;
+    var headerHeight = header.offsetHeight; 
     var elementToOffset = document.getElementById('searchBox');; 
     elementToOffset.style.marginTop = headerHeight + 'px';
 });
