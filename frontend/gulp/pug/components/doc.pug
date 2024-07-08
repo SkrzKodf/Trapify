@@ -3,12 +3,16 @@ mixin doc(css, js)
     doctype html
     html(lang="ru")
         head
+            meta(name="viewport" content="width=device-width, initial-scale=1.0")
             meta(charset="utf-8")
             meta(name="viewport", content="width=device-width, initial-scale=1.0")
             title TRAPIFY
-            for file of css
+            link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200')
+
+            for file of css 
                 link(rel="stylesheet" href=`./style/${file}.min.css`)
         body
             for file of js
                 script(async type="module", src=`./js/${file}.min.js`)
-            block
+            div.page-wrapper.parent
+                block

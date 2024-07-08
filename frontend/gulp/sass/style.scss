@@ -1,0 +1,51 @@
+@import 'theme';
+@import 'text';
+@import 'header';
+@import 'login';
+@import 'reg';
+
+html {
+    font-size: 16px;
+    
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+h2 {
+    @include h2-style;
+}
+
+h3 {
+    @include h3-style;
+}
+
+h4 {
+    @include h4-style;
+}
+
+h5 {
+    @include h4-style;
+    color: var(--white);
+}
+
+a {
+    color: var(--color-text-red);
+    text-decoration: none;
+}
+
+@media (max-width: 1600px) {
+    html {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 400px) {
+    html {
+        font-size: 8px;
+    }
+}

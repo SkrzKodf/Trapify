@@ -1,0 +1,14 @@
+mixin ico(name)
+    span.material-symbols-outlined&attributes(attributes)= name
+
+mixin bold-ico(name)
+    +ico(name).bold&attributes(attributes)
+
+mixin light-ico(name)
+    +ico(name).light&attributes(attributes)
+
+mixin bold-fill-ico(name)
+    +ico(name).bold-fill&attributes(attributes)
+    
+mixin light-fill-ico(name)
+    +ico(name).light-fill&attributes(attributes)
